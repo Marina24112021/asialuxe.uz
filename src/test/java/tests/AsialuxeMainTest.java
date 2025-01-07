@@ -13,7 +13,7 @@ public class AsialuxeMainTest extends TestBase {
     @Test
     @WithLogin
     @DisplayName("Проверка отображения сообщения при поиске билетов")
-    void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest() {
+    void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest(){
         MainPage mainPage = new MainPage();
         mainPage.checkSearchPanel();
     }

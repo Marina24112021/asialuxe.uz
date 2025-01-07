@@ -7,14 +7,12 @@ import tests.api.models.CheckTariffModel;
 import tests.api.models.components.PassengersComponent;
 import tests.api.searchPanel.SearchTicket;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Collections;
 import java.util.List;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static tests.helpers.ReadFileToList.readFile;
+import static tests.helpers.ReadFileToList.readSecretFiles;
 import static tests.specs.CodeAsiaLuxeSpec.requestSpec;
 import static tests.specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
 import static tests.specs.Endpoints.*;
@@ -48,13 +46,8 @@ public class SelectTariff {
     }
 
     @Step("Подготовить request body для бронирования билета. Данные о пассажире и тарифе.")
-    private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id) {
-        List<String> credentials = null;
-        try {
-            credentials = readFile("passangerinfoasialuxe");
-        } catch (IOException | URISyntaxException e) {
-            throw new RuntimeException(e);
-        }
+    private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id)  {
+        List<String> credentials = readSecretFiles("passangerinfoasialuxe");
         PassengersComponent passengersComponent = new PassengersComponent(
                 credentials.getFirst(),
                 credentials.get(1),
