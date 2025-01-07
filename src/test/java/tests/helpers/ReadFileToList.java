@@ -13,6 +13,7 @@ public class ReadFileToList {
         String content = Files.readString(path);
         List<String> container = new ArrayList<>();
         container.add(content);
+        container.forEach(System.out::println);
         return container;
 
     }
