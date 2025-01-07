@@ -6,8 +6,12 @@ import tests.api.models.BookTicketRequestModel;
 import tests.api.models.CheckTariffModel;
 import tests.api.models.components.PassengersComponent;
 import tests.api.searchPanel.SearchTicket;
+import tests.helpers.ReadFileToList;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Collections;
+import java.util.List;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
@@ -44,14 +48,26 @@ public class SelectTariff {
     }
 
     @Step("Подготовить request body для бронирования билета. Данные о пассажире и тарифе.")
-    private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id) {
+    private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id) throws IOException, URISyntaxException {
+        List<String> infoUser = ReadFileToList.readFile("credentialsasialuxe");
+        System.out.println(infoUser);
         PassengersComponent passengersComponent = new PassengersComponent(
-                "ADT", "ANN", "TSOY", null, null, "1990-11-11",
-                "FEMALE", "UZB", "AD121212", "2025-12-12", 0, 0);
+                "ADT",
+                "ANN",
+                "TSOY",
+                null,
+                null,
+                "1990-11-11",
+                "FEMALE",
+                "UZB",
+                "AD121212",
+                "2025-12-12",
+                0,
+                0);
 
         return new BookTicketRequestModel(
                 "Tsoy Ann Viktorovna ",
-                "tsoy.ann@gmail.com",
+                System.getProperty("login"),
                 "+998909190023",
                 reservation_id,
                 1,
@@ -62,7 +78,7 @@ public class SelectTariff {
         );
     }
 
-    public static String bookTicket() {
+    public static String bookTicket() throws IOException, URISyntaxException {
         String reservation_id = checkReservationID();
         BookTicketRequestModel request = getBookTicketRequestModel(reservation_id);
         Response response = step("Создать POST запрос, для бронирования билета", () ->

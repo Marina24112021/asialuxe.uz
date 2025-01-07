@@ -32,7 +32,6 @@ public class UserProfile {
             Integer id = listOrder.getData().getId();
             orderIdString.append(id).append(" ");
         }
-
         return orderIdString.toString();
     }
 }
