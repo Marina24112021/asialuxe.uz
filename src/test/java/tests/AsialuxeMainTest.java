@@ -24,7 +24,8 @@ public class AsialuxeMainTest extends TestBase {
         try {
             Path filePath = Path.of("secretdata/credentialsasialuxe"); // Укажите путь к вашему файлу
             liness = Files.readAllLines(filePath);
-            liness.forEach(System.out::println); // Печатает каждую строку
+            System.out.println(liness.getFirst()); // Печатает каждую строку
+            System.out.println(liness.getLast()); // Печатает каждую строку
         } catch (Exception e) {
             e.printStackTrace(); // Обработка ошибок
         }
