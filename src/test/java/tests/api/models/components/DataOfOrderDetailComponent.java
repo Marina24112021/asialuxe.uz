@@ -14,7 +14,7 @@ public class DataOfOrderDetailComponent {
             agent_id,
             sub_agent_id,
             status,
-    status_pay;
+            status_pay;
     Double price;
     String skit_for_agent;
     Integer tariff_price;

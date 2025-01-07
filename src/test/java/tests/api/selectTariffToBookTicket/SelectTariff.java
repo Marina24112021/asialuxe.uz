@@ -21,31 +21,33 @@ public class SelectTariff {
         String buyIdOfTicket = SearchTicket.getCollectionOffers();
         Response responseTariff = step("Создать GET запрос, получить список предлагаемыз тарифов для билета {buyIdOfTicket}", () ->
                 given(requestSpec)
-                .when()
-                .get(GET_TARIFF + buyIdOfTicket)
-                .then()
-                .spec(successfulResponse200Spec)
-                .extract().response());
-        return  responseTariff.jsonPath().getString("data[0].buy_id");
+                        .when()
+                        .get(GET_TARIFF + buyIdOfTicket)
+                        .then()
+                        .spec(successfulResponse200Spec)
+                        .extract().response());
+        return responseTariff.jsonPath().getString("data[0].buy_id");
     }
-    public static String checkReservationID(){
+
+    public static String checkReservationID() {
         String buyId = SelectTariff.getTariff();
         CheckTariffModel request = new CheckTariffModel(1, buyId);
         Response response = step("Создать POST запрос, для предварительного бронирования билета {buyId}", () ->
                 given(requestSpec)
-                .body(request)
-                .when()
-                .post(CHECK)
-                .then()
-                .spec(successfulResponse200Spec)
-                .extract().response());
+                        .body(request)
+                        .when()
+                        .post(CHECK)
+                        .then()
+                        .spec(successfulResponse200Spec)
+                        .extract().response());
         return response.jsonPath().getString("data.reservation_id");
     }
+
     @Step("Подготовить request body для бронирования билета. Данные о пассажире и тарифе.")
     private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id) {
         PassengersComponent passengersComponent = new PassengersComponent(
                 "ADT", "ANN", "TSOY", null, null, "1990-11-11",
-                "FEMALE","UZB","AD121212","2025-12-12", 0, 0 );
+                "FEMALE", "UZB", "AD121212", "2025-12-12", 0, 0);
 
         return new BookTicketRequestModel(
                 "Tsoy Ann Viktorovna ",
@@ -60,17 +62,17 @@ public class SelectTariff {
         );
     }
 
-    public static String bookTicket(){
+    public static String bookTicket() {
         String reservation_id = checkReservationID();
         BookTicketRequestModel request = getBookTicketRequestModel(reservation_id);
         Response response = step("Создать POST запрос, для бронирования билета", () ->
                 given(requestSpec)
-                .body(request)
-                .when()
-                .post(BOOK)
-                .then()
-                .spec(successfulResponse200Spec)
-                .extract().response());
+                        .body(request)
+                        .when()
+                        .post(BOOK)
+                        .then()
+                        .spec(successfulResponse200Spec)
+                        .extract().response());
         return response.jsonPath().getString("data.id");
     }
 }

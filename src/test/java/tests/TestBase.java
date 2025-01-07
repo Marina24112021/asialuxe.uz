@@ -1,16 +1,16 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
-import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import tests.config.ReaderConfig;
 import tests.helpers.Attach;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static io.qameta.allure.Allure.step;
 
 public class TestBase {
     @BeforeAll
@@ -24,6 +24,7 @@ public class TestBase {
     public void addLogger() {
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
+
     @AfterEach
     void addAttachments() {
         Attach.screenshotAs("Screenshot");
@@ -32,6 +33,6 @@ public class TestBase {
             Attach.browserConsoleLogs();
         }
         Attach.addVideo();
-        closeWebDriver();
+        step("Закрыть браузер", Selenide::closeWebDriver);
     }
 }

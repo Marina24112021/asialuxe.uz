@@ -24,7 +24,6 @@ public class SearchFreeRoom {
                 .spec(successfulResponse200Spec)
                 .extract().response();
         List<Map<String, Object>> countOfRooms = response.jsonPath().getList("rooms");
-        int count = countOfRooms.size();
-        return count;
+        return countOfRooms.size();
     }
 }

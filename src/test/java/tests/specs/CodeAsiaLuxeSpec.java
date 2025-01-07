@@ -16,7 +16,7 @@ public class CodeAsiaLuxeSpec {
             .filter(withCustomTemplates())
             .contentType(JSON)
             .log().all();
-    public final static RequestSpecification    requestSpec = with()
+    public final static RequestSpecification requestSpec = with()
             .baseUri("https://api.asialuxe.app")
             .header("Authorization",
                     "Bearer accessEwm51_fR20Ik-0hSmAuCQDFfE6qKEgyP6raDqIimvKJ6CpOXHj8zVYD7nMEa7MpP1735925110_ALaggLc5mfN414Q-MWlNG-FyeAuTYvPmobile")
@@ -25,10 +25,6 @@ public class CodeAsiaLuxeSpec {
             .log().all();
     public final static ResponseSpecification successfulResponse200Spec = new ResponseSpecBuilder()
             .expectStatusCode(200)
-            .log(ALL)
-            .build();
-    public final static ResponseSpecification failedResponse400Spec = new ResponseSpecBuilder()
-            .expectStatusCode(400)
             .log(ALL)
             .build();
 

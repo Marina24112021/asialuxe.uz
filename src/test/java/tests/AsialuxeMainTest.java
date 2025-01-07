@@ -13,10 +13,11 @@ public class AsialuxeMainTest extends TestBase {
     @Test
     @WithLogin
     @DisplayName("Проверка отображения сообщения при поиске билетов")
-    void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest(){
+    void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest() {
         MainPage mainPage = new MainPage();
         mainPage.checkSearchPanel();
     }
+
     @WithLogin
     @Test
     @DisplayName("Проверка корректного текста в меню")
@@ -24,10 +25,11 @@ public class AsialuxeMainTest extends TestBase {
         MainPage mainPage = new MainPage();
         mainPage.checkNamesOfMenu();
     }
+
     @Test
     @WithLogin
     @DisplayName("Проверка отображения наполнения текста для блока Почему мы")
-    void checkContentOfWhyUsBlockIsOnMainPageTest() throws Exception {
+    void checkContentOfWhyUsBlockIsOnMainPageTest() {
         MainPage mainPage = new MainPage();
         mainPage.checkBlockAboutAgencyCompareThroughFile();
     }
