@@ -21,8 +21,6 @@ public class AsialuxeMainTest extends TestBase {
     void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest() throws IOException, URISyntaxException {
         MainPage mainPage = new MainPage();
         mainPage.checkSearchPanel();
-        List<String> infoUser = ReadFileToList.readFile("credentialsasialuxe");
-        System.out.println(infoUser);
     }
 
     @WithLogin
