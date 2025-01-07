@@ -17,7 +17,7 @@ import static tests.api.userProfile.UserProfile.getListOfOrders;
 public class ProfileOrderAPITest {
     @Test
     @DisplayName("Проверка по созданию нового заказала-брони и наличие брони в заказах пользователя. Реализовано через API.")
-    void createNewOrderAndCompareItWithResultList() throws IOException, URISyntaxException {
+    void createNewOrderAndCompareItWithResultList() {
         String newOrderId = bookTicket();
         String expectedListOfOrderIdWithNewOrderId = getListOfOrders();
         assertTrue(expectedListOfOrderIdWithNewOrderId.contains(newOrderId));

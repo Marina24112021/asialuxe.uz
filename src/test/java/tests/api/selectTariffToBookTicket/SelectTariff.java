@@ -48,9 +48,7 @@ public class SelectTariff {
     }
 
     @Step("Подготовить request body для бронирования билета. Данные о пассажире и тарифе.")
-    private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id) throws IOException, URISyntaxException {
-        List<String> infoUser = ReadFileToList.readFile("credentialsasialuxe");
-        System.out.println(infoUser);
+    private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id)  {
         PassengersComponent passengersComponent = new PassengersComponent(
                 "ADT",
                 "ANN",
@@ -78,7 +76,7 @@ public class SelectTariff {
         );
     }
 
-    public static String bookTicket() throws IOException, URISyntaxException {
+    public static String bookTicket() {
         String reservation_id = checkReservationID();
         BookTicketRequestModel request = getBookTicketRequestModel(reservation_id);
         Response response = step("Создать POST запрос, для бронирования билета", () ->
