@@ -22,7 +22,7 @@ public class AsialuxeMainTest extends TestBase {
         //MainPage mainPage = new MainPage();
         //mainPage.checkSearchPanel();
 
-        List<String> infoUser = ReadFileToList.readFile("credentialsasialuxe");
+        List<String> infoUser = ReadFileToList.readFile("credentialsasialuxe.txt");
         System.out.println(infoUser);
     }
 
