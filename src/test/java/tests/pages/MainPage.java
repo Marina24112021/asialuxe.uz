@@ -39,7 +39,7 @@ public class MainPage {
 
     public void checkSearchPanel() {
         step("Открыть главную страницу", () -> open("/ru"));
-        step("Нажать на поле Откуда",()->fromInput.shouldBe(visible).click());
+        step("Нажать на поле Откуда", () -> fromInput.shouldBe(visible).click());
         step("Заполнить поле Откуда", () -> fromInput.shouldBe(editable).setValue("Tashkent"));
         step("Выбрать первое значение из выпадаюшего списка", () -> fromInput.parent().sibling(0).$$("ul li").first().click());
         step("Заполнить поле Куда", () -> toInput.shouldBe(visible).setValue("Namangan"));

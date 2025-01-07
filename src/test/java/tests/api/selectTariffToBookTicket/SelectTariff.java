@@ -6,7 +6,6 @@ import tests.api.models.BookTicketRequestModel;
 import tests.api.models.CheckTariffModel;
 import tests.api.models.components.PassengersComponent;
 import tests.api.searchPanel.SearchTicket;
-import tests.helpers.ReadFileToList;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -49,7 +48,7 @@ public class SelectTariff {
     }
 
     @Step("Подготовить request body для бронирования билета. Данные о пассажире и тарифе.")
-    private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id)  {
+    private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id) {
         List<String> credentials = null;
         try {
             credentials = readFile("passangerinfoasialuxe");
