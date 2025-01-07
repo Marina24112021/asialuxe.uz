@@ -23,7 +23,7 @@ public class ReadFileToList {
         try {
             Path pathFile = Path.of("src/test/resources/data/"+pathToFile);
             linesArr = Files.readAllLines(pathFile);
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace(); // Обработка ошибок
         }
         return linesArr;
