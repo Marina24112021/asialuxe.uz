@@ -18,17 +18,8 @@ public class AsialuxeMainTest extends TestBase {
     @WithLogin
     @DisplayName("Проверка отображения сообщения при поиске билетов")
     void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest(){
-        //MainPage mainPage = new MainPage();
-        //mainPage.checkSearchPanel();
-        List<String> liness = null;
-        try {
-            Path filePath = Path.of("secretdata/credentialsasialuxe"); // Укажите путь к вашему файлу
-            liness = Files.readAllLines(filePath);
-            System.out.println(liness.getFirst()); // Печатает каждую строку
-            System.out.println(liness.getLast()); // Печатает каждую строку
-        } catch (Exception e) {
-            e.printStackTrace(); // Обработка ошибок
-        }
+        MainPage mainPage = new MainPage();
+        mainPage.checkSearchPanel();
     }
 
     @WithLogin
