@@ -21,7 +21,7 @@ public class ReadFileToList {
     public static List<String> readSecretFiles(String pathToFile) {
         List<String> linesArr = null;
         try {
-            Path pathFile = Path.of("src/test/resources/data/"+pathToFile);
+            Path pathFile = Path.of("secretdata/"+pathToFile);
             linesArr = Files.readAllLines(pathFile);
         } catch (Exception e){
             e.printStackTrace(); // Обработка ошибок
