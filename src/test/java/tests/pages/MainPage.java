@@ -43,10 +43,10 @@ public class MainPage {
         step("Заполнить поле Откуда", () -> fromInput.shouldBe(editable).setValue("Tashkent"));
         fromInput.parent().sibling(0).$$("ul li").first().click();
         step("Заполнить поле Куда", () -> toInput.shouldBe(visible).setValue("Namangan"));
-        toInput.parent().sibling(0).$$("li").first().click();
-        executeJavaScript("arguments[0].removeAttribute('readonly')", input);
+        step("Выбрать первое значение из выпадаюшего списка",()->toInput.parent().sibling(0).$$("li").first().click());
+        step("Удалить аттрибут",()->executeJavaScript("arguments[0].removeAttribute('readonly')", input));
         step("Заполнить поле Дата ", () ->input.setValue(currentDate.plusDays(2).format(formatter)));
-        button.click();
+        step("Нажать на Поиск",()->button.click());
         step("Проверить что отображается сообщение о поиске билетов ", () ->
         mainSearch.parent().sibling(0).shouldHave(text("Пожалуйста, подождите, мы находим для вас лучшие варианты...")));
     }

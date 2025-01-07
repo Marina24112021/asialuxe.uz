@@ -15,7 +15,7 @@ import static org.openqa.selenium.logging.LogType.BROWSER;
 
 public class Attach {
     @Attachment(value = "{attachName}", type = "image/png")
-    public static byte[] screenshotAs(String screenshot) {
+    public static byte[] screenshotAs(String attachName) {
         return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
@@ -24,7 +24,7 @@ public class Attach {
         return getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8);
     }
 
-    @Attachment(value = "{attachName}", type = "text/plain")
+    @Attachment(value = "BrowserConsoleLog", type = "text/plain")
     public static String attachAsText(String message) {
         return message;
     }
