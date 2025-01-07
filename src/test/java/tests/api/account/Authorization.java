@@ -9,9 +9,9 @@ import static tests.specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
 import static tests.specs.Endpoints.LOGIN;
 
 public class Authorization {
-    public static AuthorizationResponseModel userAuthorization() {
-        AuthorizationRequestModel request = new AuthorizationRequestModel("tsoy.ann@gmail.com", "123123123");
-        return given(requestSpecForAuth)
+    public static void userAuthorization() {
+        AuthorizationRequestModel request = new AuthorizationRequestModel(System.getProperty("login"), System.getProperty("password"));
+        given(requestSpecForAuth)
                 .body(request)
                 .when()
                 .post(LOGIN)
