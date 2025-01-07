@@ -16,13 +16,12 @@ public class ReadFileToList {
         List<String> container = new ArrayList<>();
         container.add(content);
         return container;
-
     }
 
     public static List<String> readSecretFiles(String pathToFile) {
         List<String> liness = null;
         try {
-            Path filePath = Path.of("secretdata/"+pathToFile); // Укажите путь к вашему файлу
+            Path filePath = Path.of("secretdata/" + pathToFile); // Укажите путь к вашему файлу
             liness = Files.readAllLines(filePath);
         } catch (Exception e) {
             e.printStackTrace(); // Обработка ошибок

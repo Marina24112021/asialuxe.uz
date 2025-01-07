@@ -7,14 +7,10 @@ import tests.api.models.CheckTariffModel;
 import tests.api.models.components.PassengersComponent;
 import tests.api.searchPanel.SearchTicket;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static tests.helpers.ReadFileToList.readSecretFiles;
 import static tests.specs.CodeAsiaLuxeSpec.requestSpec;
 import static tests.specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
 import static tests.specs.Endpoints.*;
@@ -48,7 +44,7 @@ public class SelectTariff {
     }
 
     @Step("Подготовить request body для бронирования билета. Данные о пассажире и тарифе.")
-    private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id)  {
+    private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id) {
 
         PassengersComponent passengersComponent = new PassengersComponent(
                 "ADT",
@@ -68,7 +64,7 @@ public class SelectTariff {
         return new BookTicketRequestModel(
                 "Tsoy Ann Viktorovna",
                 "tsoy.ann@gmail.com",
-        "+998909190023",
+                "+998909190023",
                 reservation_id,
                 1,
                 "",

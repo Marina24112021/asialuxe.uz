@@ -7,17 +7,13 @@ import org.junit.jupiter.api.Test;
 import tests.helpers.extensions.WithLogin;
 import tests.pages.MainPage;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
-
 @Owner("Marina Chen")
 @Tag("smoke")
 public class AsialuxeMainTest extends TestBase {
     @Test
     @WithLogin
     @DisplayName("Проверка отображения сообщения при поиске билетов")
-    void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest(){
+    void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest() {
         MainPage mainPage = new MainPage();
         mainPage.checkSearchPanel();
     }
