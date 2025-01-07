@@ -7,6 +7,8 @@ import tests.api.models.CheckTariffModel;
 import tests.api.models.components.PassengersComponent;
 import tests.api.searchPanel.SearchTicket;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -47,7 +49,7 @@ public class SelectTariff {
 
     @Step("Подготовить request body для бронирования билета. Данные о пассажире и тарифе.")
     private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id)  {
-        List<String> credentials = readSecretFiles("passangerinfoasialuxe");
+        List<String> credentials = List.of();
         PassengersComponent passengersComponent = new PassengersComponent(
                 credentials.getFirst(),
                 credentials.get(1),
