@@ -49,26 +49,26 @@ public class SelectTariff {
 
     @Step("Подготовить request body для бронирования билета. Данные о пассажире и тарифе.")
     private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id)  {
-        List<String> credentials = List.of();
+
         PassengersComponent passengersComponent = new PassengersComponent(
-                credentials.getFirst(),
-                credentials.get(1),
-                credentials.get(2),
+                "ADT",
+                "ANN",
+                "TSOY",
                 null,
                 null,
-                credentials.get(3),
-                credentials.get(4),
-                credentials.get(5),
-                credentials.get(6),
-                credentials.get(7),
+                "1990-11-11",
+                "FEMALE",
+                "UZB",
+                "AD121212",
+                "2025-12-12",
                 0,
                 0
         );
 
         return new BookTicketRequestModel(
-                credentials.get(8),
-                credentials.get(9),
-                credentials.get(10),
+                "Tsoy Ann Viktorovna",
+                "tsoy.ann@gmail.com",
+        "+998909190023",
                 reservation_id,
                 1,
                 "",
