@@ -10,6 +10,8 @@ import tests.pages.MainPage;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 @Owner("Marina Chen")
@@ -21,9 +23,13 @@ public class AsialuxeMainTest extends TestBase {
     void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest() throws IOException, URISyntaxException {
         //MainPage mainPage = new MainPage();
         //mainPage.checkSearchPanel();
-
-        List<String> infoUser = ReadFileToList.readFile("credentialsasialuxe.txt");
-        System.out.println(infoUser);
+        try {
+            Path filePath = Path.of("notification/credentialsasialuxe.txt"); // Укажите путь к вашему файлу
+            List<String> lines = Files.readAllLines(filePath);
+            lines.forEach(System.out::println); // Печатает каждую строку
+        } catch (Exception e) {
+            e.printStackTrace(); // Обработка ошибок
+        }
     }
 
     @WithLogin
