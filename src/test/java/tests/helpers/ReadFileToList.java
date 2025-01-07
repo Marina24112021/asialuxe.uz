@@ -18,14 +18,16 @@ public class ReadFileToList {
         return container;
 
     }
+
     public static List<String> readSecretFiles(String pathToFile) {
-        List<String> linesArr = null;
+        List<String> liness = null;
         try {
-            Path pathFile = Path.of("secretdata/"+pathToFile);
-            linesArr = Files.readAllLines(pathFile);
-        } catch (Exception e){
+            Path filePath = Path.of("secretdata/passangerinfoasialuxe"); // Укажите путь к вашему файлу
+            liness = Files.readAllLines(filePath);
+            liness.forEach(System.out::println); // Печатает каждую строку
+        } catch (Exception e) {
             e.printStackTrace(); // Обработка ошибок
         }
-        return linesArr;
+        return liness;
     }
 }

@@ -14,7 +14,7 @@ import static tests.specs.Endpoints.LOGIN;
 public class Authorization {
     public static void userAuthorization() {
         List<String> credentials = readSecretFiles("credentialsasialuxe");
-
+        System.out.println(credentials.get(0));
         AuthorizationRequestModel request = new AuthorizationRequestModel(credentials.getFirst(), credentials.getLast());
         given(requestSpecForAuth)
                 .body(request)
