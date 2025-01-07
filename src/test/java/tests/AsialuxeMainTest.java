@@ -24,7 +24,7 @@ public class AsialuxeMainTest extends TestBase {
         //MainPage mainPage = new MainPage();
         //mainPage.checkSearchPanel();
         try {
-            Path filePath = Path.of("notifications/credentialsasialuxe.txt"); // Укажите путь к вашему файлу
+            Path filePath = Path.of("src/test/resources/data/credentialsasialuxe"); // Укажите путь к вашему файлу
             List<String> lines = Files.readAllLines(filePath);
             lines.forEach(System.out::println); // Печатает каждую строку
         } catch (Exception e) {
