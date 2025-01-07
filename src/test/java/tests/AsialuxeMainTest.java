@@ -8,11 +8,11 @@ import tests.helpers.extensions.WithLogin;
 import tests.pages.MainPage;
 
 @Owner("Marina Chen")
+@Tag("smoke")
 public class AsialuxeMainTest extends TestBase {
     @Test
     @WithLogin
     @DisplayName("Проверка отображения сообщения при поиске билетов")
-    @Tag("smoke")
     void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest(){
         MainPage mainPage = new MainPage();
         mainPage.checkSearchPanel();
@@ -20,7 +20,6 @@ public class AsialuxeMainTest extends TestBase {
     @WithLogin
     @Test
     @DisplayName("Проверка корректного текста в меню")
-    @Tag("smoke")
     void checkTitlesOfHeaderMenuIsCorrectDisplayedOnMainPageTest() {
         MainPage mainPage = new MainPage();
         mainPage.checkNamesOfMenu();
@@ -28,7 +27,6 @@ public class AsialuxeMainTest extends TestBase {
     @Test
     @WithLogin
     @DisplayName("Проверка отображения наполнения текста для блока Почему мы")
-    @Tag("smoke")
     void checkContentOfWhyUsBlockIsOnMainPageTest() throws Exception {
         MainPage mainPage = new MainPage();
         mainPage.checkBlockAboutAgencyCompareThroughFile();

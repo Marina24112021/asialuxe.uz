@@ -10,9 +10,9 @@ import static tests.api.selectTariffToBookTicket.SelectTariff.bookTicket;
 import static tests.api.userProfile.UserProfile.getListOfOrders;
 
 @Owner("Marina Chen")
+@Tag("api")
 public class ProfileOrderAPITest {
     @Test
-    @Tag("api")
     @DisplayName("Проверка по созданию нового заказала-брони и наличие брони в заказах пользователя. Реализовано через API.")
     void createNewOrderAndCompareItWithResultList() {
         String newOrderId = bookTicket();
