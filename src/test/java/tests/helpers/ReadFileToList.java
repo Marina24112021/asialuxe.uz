@@ -22,7 +22,7 @@ public class ReadFileToList {
     public static List<String> readSecretFiles(String pathToFile) {
         List<String> liness = null;
         try {
-            Path filePath = Path.of("secretdata/passangerinfoasialuxe"); // Укажите путь к вашему файлу
+            Path filePath = Path.of("secretdata/credentialsasialuxe"); // Укажите путь к вашему файлу
             liness = Files.readAllLines(filePath);
             liness.forEach(System.out::println); // Печатает каждую строку
         } catch (Exception e) {
