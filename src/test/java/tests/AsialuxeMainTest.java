@@ -28,7 +28,7 @@ public class AsialuxeMainTest extends TestBase {
             List<String> lines = Files.readAllLines(filePath);
             lines.forEach(System.out::println); // Печатает каждую строку
         } catch (Exception e) {
-            e.printStackTrace(); // Обработка ошибок
+            e.printStackTrace();
         }
     }
 
