@@ -20,16 +20,9 @@ public class AsialuxeMainTest extends TestBase {
     @Test
     @WithLogin
     @DisplayName("Проверка отображения сообщения при поиске билетов")
-    void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest() throws IOException, URISyntaxException {
-        //MainPage mainPage = new MainPage();
-        //mainPage.checkSearchPanel();
-        try {
-            Path filePath = Path.of("src/test/resources/data/credentialsasialuxe"); // Укажите путь к вашему файлу
-            List<String> lines = Files.readAllLines(filePath);
-            lines.forEach(System.out::println); // Печатает каждую строку
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest(){
+        MainPage mainPage = new MainPage();
+        mainPage.checkSearchPanel();
     }
 
     @WithLogin

@@ -15,6 +15,7 @@ import java.util.List;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
+import static tests.helpers.ReadFileToList.readFile;
 import static tests.specs.CodeAsiaLuxeSpec.requestSpec;
 import static tests.specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
 import static tests.specs.Endpoints.*;
@@ -49,24 +50,31 @@ public class SelectTariff {
 
     @Step("Подготовить request body для бронирования билета. Данные о пассажире и тарифе.")
     private static BookTicketRequestModel getBookTicketRequestModel(String reservation_id)  {
+        List<String> credentials = null;
+        try {
+            credentials = readFile("passangerinfoasialuxe");
+        } catch (IOException | URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
         PassengersComponent passengersComponent = new PassengersComponent(
-                "ADT",
-                "ANN",
-                "TSOY",
+                credentials.getFirst(),
+                credentials.get(1),
+                credentials.get(2),
                 null,
                 null,
-                "1990-11-11",
-                "FEMALE",
-                "UZB",
-                "AD121212",
-                "2025-12-12",
+                credentials.get(3),
+                credentials.get(4),
+                credentials.get(5),
+                credentials.get(6),
+                credentials.get(7),
                 0,
-                0);
+                0
+        );
 
         return new BookTicketRequestModel(
-                "Tsoy Ann Viktorovna ",
-                System.getProperty("login"),
-                "+998909190023",
+                credentials.get(8),
+                credentials.get(9),
+                credentials.get(10),
                 reservation_id,
                 1,
                 "",
