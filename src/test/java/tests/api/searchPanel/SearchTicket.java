@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tests.specs.CodeAsiaLuxeSpec.requestSpec;
 import static tests.specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
 import static tests.specs.Endpoints.*;
@@ -53,6 +54,7 @@ public class SearchTicket {
                     .extract().response();
             buyId = response.jsonPath().getString("data.data[0].buy_id");
         } while (buyId == null || buyId.isEmpty());
-        return response.jsonPath().getString("data.data[0].buy_id");
+        assertTrue(buyId != null && !buyId.isEmpty(), "Переменная Buy ID не определена, поиск билетов не возможен. API:get_offers");
+        return buyId;
     }
 }

@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Test;
 import tests.helpers.extensions.WithLogin;
 import tests.pages.HotelsPage;
 
-@Tag("smoke")
+
 public class HotelTest extends TestBase {
     @Test
+    @Tag("smoke")
     @WithLogin
     @DisplayName("Проверка по корректному отображению заголовка")
     void checkStaticHeaderPageOfHotelTest() {
@@ -17,6 +18,7 @@ public class HotelTest extends TestBase {
     }
 
     @Test
+    @Tag("smoke")
     @WithLogin
     @DisplayName("Проверка по отображению заголовок о детализации отеля")
     void checkStaticHeaderIsDisplayedOnDetailPageOfHotelTest() {
