@@ -2,7 +2,6 @@ package config;
 
 
 import org.aeonbits.owner.Config;
-import org.checkerframework.checker.units.qual.K;
 
 @Config.Sources({
         "classpath:properties/${env}.properties",
