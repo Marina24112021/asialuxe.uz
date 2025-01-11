@@ -24,7 +24,7 @@ public class ReaderConfig {
 
         if (config.isRemote().equals(true)) {
             List<String> credentials = readSecretFiles("selenoidcredentionals");
-            Configuration.remote = "https://"+credentials.get(0)+credentials.get(1)+":"+config.getRemoteUrl();
+            Configuration.remote = "https://"+credentials.get(0)+":"+credentials.get(1)+config.getRemoteUrl();
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                     "enableVNC", true,
