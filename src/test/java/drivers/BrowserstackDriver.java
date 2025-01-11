@@ -11,6 +11,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import javax.annotation.Nonnull;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
+
+import static helpers.ReadFileToList.readSecretFiles;
 
 public class BrowserstackDriver implements WebDriverProvider {
 
@@ -19,6 +22,7 @@ public class BrowserstackDriver implements WebDriverProvider {
     @Nonnull
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
+        List<String> credentials = readSecretFiles("browserstackcredentionals");
         MutableCapabilities caps = new MutableCapabilities();
         caps.setCapability("app", config.getApp());
         caps.setCapability("platformName", config.getPlatformName());
@@ -35,7 +39,7 @@ public class BrowserstackDriver implements WebDriverProvider {
         caps.setCapability("browserstack.debug", "true");
         caps.setCapability("browserstack.networkLogs", "true");
 
-        String browserStackUrl = "https://" + config.getUserName() + ":" + config.getAccessKey() + "@hub-cloud.browserstack.com/wd/hub";
+        String browserStackUrl = "https://" + credentials.get(0) + ":" + credentials.get(1) + "@hub-cloud.browserstack.com/wd/hub";
         try {
             return new RemoteWebDriver(new URL(browserStackUrl), caps);
         } catch (MalformedURLException e) {
