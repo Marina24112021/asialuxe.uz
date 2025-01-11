@@ -14,8 +14,6 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 
 public class TestBase {
-    private static final String devicehost = System.getProperty("devicehost", "emulation");
-
     @BeforeAll
     static void beforeAll() {
         Configuration.pageLoadStrategy = "eager";
@@ -30,13 +28,8 @@ public class TestBase {
 
     @AfterEach
     void addAttachments() {
-        String sessionId = Selenide.sessionId().toString();
-        if (devicehost.equals("browserstack")) {
-            Attach.addVideo();
-        }
-        if (devicehost.equals("emulation")) {
-            Attach.screenshotAs("Last screenshot");
-        }
+        Attach.screenshotAs("Last screenshot");
+        Attach.addVideo();
         Attach.pageSource();
         closeWebDriver();
     }
