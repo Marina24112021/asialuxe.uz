@@ -2,20 +2,20 @@ package config;
 
 
 import org.aeonbits.owner.Config;
-
+import org.checkerframework.checker.units.qual.K;
 
 @Config.Sources({
         "classpath:properties/${env}.properties",
-        "classpath:properties/android.properties"})
+        "classpath:properties/browserstack.properties"})
 
-public interface WebDriverMobileConfig extends Config {
+public interface BrowserstackConfig extends Config {
     @Key("browserstack.userName")
     String getUserName();
 
     @Key("browserstack.accessKey")
     String getAccessKey();
 
-    @Key("apps")
+    @Key("app")
     String getApp();
 
     @Key("remoteUrl")
@@ -26,4 +26,13 @@ public interface WebDriverMobileConfig extends Config {
 
     @Key("os_version")
     String getOs_version();
+
+    @Key("platformName")
+    String getPlatformName();
+
+    @Key("appPackage")
+    String getAppPackage();
+
+    @Key("appActivity")
+    String getAppActivity();
 }

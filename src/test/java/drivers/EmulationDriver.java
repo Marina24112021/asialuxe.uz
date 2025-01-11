@@ -26,7 +26,6 @@ public class EmulationDriver implements WebDriverProvider {
             throw new RuntimeException(e);
         }
     }
-
     @Nonnull
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
@@ -44,20 +43,8 @@ public class EmulationDriver implements WebDriverProvider {
     }
 
     private String getAppPath() {
-        //String appVersion = "app-alpha-universal-release.apk";
-        // String appUrl = "https://github.com/wikimedia/apps-android-wikipedia" +
-        //        "/releases/download/latest/" + appVersion;
-        // String appPath = "src/test/resources/apps/"+appVersion;
         String appPath = "src/test/resources/apps/uz_asialuxe_twa_nga_v2.1.0.0.apk";
-
         File app = new File(appPath);
-        /*if (!app.exists()) {
-            try (InputStream in = new URL(appUrl).openStream()) {
-                copyInputStreamToFile(in, app);
-            } catch (IOException e) {
-                throw new AssertionError("Failed to download application", e);
-            }
-        }*/
         return app.getAbsolutePath();
     }
 }

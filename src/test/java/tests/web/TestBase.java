@@ -32,7 +32,7 @@ public class TestBase {
     void addAttachments() {
         String sessionId = Selenide.sessionId().toString();
         if (devicehost.equals("browserstack")) {
-            Attach.addVideo(sessionId);
+            Attach.addVideo();
         }
         if (devicehost.equals("emulation")) {
             Attach.screenshotAs("Last screenshot");
