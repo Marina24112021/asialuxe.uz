@@ -190,6 +190,12 @@ gradle clean browserstack -Ddevicehost=browserstack
 
 <img src="images/screenshots/telegram-notification.png">
 
+## Интеграция с <b><a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-1380">Jira</a></b>
+
+>В Jira создана задача
+
+>В разделе `Allure:Test Cases` отображаются интегрированные автоматизированные и ручные тесты
+<img src="images/screenshots/jira-with-allure-test-cases.png">
 ## Пример выполнения теста в Selenoid
 Высокопроизводительный сервер для управления браузерами в контейнерах Docker. Он используется для выполнения автоматизированных тестов в изолированных окружениях и поддерживает множество версий браузеров.
 Основные функции Selenoid
