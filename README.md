@@ -27,7 +27,7 @@ Asialuxe Travel — крупнейший туроператор Узбекист
 - `Page Object` шаблон проектирования
 - Использование техноголии `Owner` для придания тестам гибкости и легкости конфигурации
 - Возможность запуска тестов: локально, удалённо, по тегам
-- Использование `Faker` для генерации данных
+- Использование <a target="_blank" href="https://app-automate.browserstack.com/">Browserstack.com</a> для прогона автотестов для мобильного устройства
 - Использование `Lombok` для моделей в API тестах
 - Использование собственных расширений:
     - `@WithLogin` для предварительной авторизации 
@@ -60,11 +60,11 @@ Asialuxe Travel — крупнейший туроператор Узбекист
 </div>
 
 ## Реализованные проверки
-### Web
+### Web UI
 - [x] Проверка заголовок меню на домашней странице
 - [x] Проверка поисковой панели на домашней странице
 - [x] Проверка наличия текста в блоке Почему мы
-### Api
+### API
 - [x] Выполнение успешного запроса на авторизацию
 - [x] Выполнение успешного запроса поиск билетов
 - [x] Выполнение успешного запроса получения данных о рейсе
@@ -77,52 +77,107 @@ Asialuxe Travel — крупнейший туроператор Узбекист
 - [x] Проверка заголовка странице Профиль-> Архив акций
 - [x] Проверка адреса филиала на странице Профиль-> Где купить?
 ### Ручные проверки
-
+- [x] Проверить как работает allure report 
 ## Запуск тестов
+Конфигурационные файлы `.properties` лежат в папке `resources`. <br/>
+При необходимости можно изменить их.
 
 ### Схема комбинаций по запуску автотестов
-
 ```mermaid 
 flowchart LR
     A(gradle) --> B(clean)
-    B --> C{Выбрать тег}
-    C --> D[test]
-    C --> E[web]
-    C --> F[api]
-    C --> G[android]
-    E --> H[-DenvWeb=local]
-    E --> I[-DenvWeb=remote]
-    G --> J[-DenvMobile=browserstack]
-    G --> K[-DenvMobile=emulator]
-    G --> L[-DenvMobile=localDevice]
+    B --> C[browserstack]
+    B --> D[emulation]
+    B --> E[apitest]
+    B --> F[fulltest]
+    C --> G[smoketest]
+    C --> H[-Ddevicehost=browserstack]
+    D --> I[-Ddevicehost=emulation]
+    E --> J[-Denv=remote]
+    F --> K[-Denv=remote]
 ```
 ### Локальный запуск тестов
-#### Запуск всех тестов
-
-Для запуска следует открыть IntelliJ IDEA и выполнить в терминале:
-```
-gradle clean test
-```
-
-или
-
-```
-gradle clean test -Denv=local
-```
+Для запуска WEB/API/Mobile автотестов следует открыть IntelliJ IDEA и выполнить в терминале команду:
 #### WEB
-
 ```
-gradle clean web
+gradle clean fulltest
 ```
-
-
 #### API
 ```
-gradle clean api 
+gradle clean apitest -Denv=local 
+```
+#### Mobile автотесты
+Для запуска автотестов используется эмулятор Android Studio <b><a target="_blank" href="https://developer.android.com/studio">Developer.android.com</a></b>, предварительно который надо установить.
+
+```
+gradle emulation -Ddevicehost=emulation
 ```
 
-#### Mobile
+### Удаленный запуск тестов
+Для группы WEB и API автотестов используется удаленный сервер <b><a target="_blank" href="http://selenoid.autotests.cloud">Selenoid.autotests.cloud</a></b>
 
 ```
-gradle clean android -DenvMobile=${ENV_MOBILE}
+gradle clean smoketest -Denv=remote
 ```
+
+#### API автотесты
+```
+gradle clean apitest -Denv=remote
+```
+#### Mobile автотесты
+Для удаленного запуска автотестов используется Web-приложение <b><a target="_blank" href="https://app-automate.browserstack.com/">Browserstack.com</a></b>
+
+```
+gradle clean browserstack -Ddevicehost=browserstack
+```
+## Cборка тестов в <b><a target="_blank" href="https://jenkins.autotests.cloud/job/diploma-asialuxe.uz-chen/">Jenkins</a></b>
+
+>Для запуска сборки необходимо перейти в раздел `Build with Parameters` и нажать кнопку `Build`
+
+<img src="images/screenshots/jenk.png">
+
+> Сборка с параметрами позволяет перед запуском задать нужные параметры для сборки:
+
+<p align="center">
+<img src="images/screenshots/jenkins-build.png"/>
+</p>
+
+## Интеграция с <b><a target="_blank" href="https://jenkins.autotests.cloud/job/diploma-asialuxe.uz-chen/45/allure/#suites/b60d4aa832cfbd8ef59d3cbdec7fc1a8/491a59a39fa228e8/">Allure report</a></b>
+#### Диаграммы прохождения тестов
+`ALLURE REPORT` - отображает дату и время теста, общее количество запущенных тестов, а также диаграмму с процентом и количеством успешных, упавших и сломавшихся в процессе выполнения тестов <br/>
+`TREND` - отображает тенденцию выполнения тестов для всех запусков <br/>
+`SUITES` - отображает распределение тестов по сьютам <br/>
+`CATEGORIES` - отображает распределение неудачных тестов по типам дефектов
+
+<img src="images/screenshots/allure-main-report.png">
+
+#### Развернутый результат прохождения тестов:
+1. Общий список автотестов
+2. Содержание автотеста
+3. Вложения
+<img src="images/screenshots/allure-suites.png">
+
+## Интеграция с <b><a target="_blank" href="https://allure.autotests.cloud/project/4549/launches">Allure TestOps</a></b>
+Настройка джобы
+<img src="images/screenshots/allure-testops-job.png">
+Вызов автотестов из allure.autotests.cloud
+<img src="images/screenshots/allure-testops.png">
+
+
+## Уведомления в Telegram с использованием бота
+
+> Бот, созданный в Telegram, после завершения сборки отправляет сообщение с отчетом о прохождении тестов
+>
+<img src="images/screenshots/telegram-notification.png">
+
+## Пример выполнения теста в Selenoid
+
+> К каждому UI-тесту в отчете прилагается видео
+<p align="center">
+  <img src="images/video/uitest.gif">
+</p>
+
+> К каждому мобильному тесту, выполняемому в Browserstack, к отчету прилагается видео
+<p align="center">
+  <img src="images/video/mobilevideo.gif">
+</p>
