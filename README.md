@@ -129,7 +129,10 @@ gradle clean apitest -Denv=remote
 ```
 gradle clean browserstack -Ddevicehost=browserstack
 ```
-## Cборка тестов в <b><a target="_blank" href="https://jenkins.autotests.cloud/job/diploma-asialuxe.uz-chen/">Jenkins</a></b>
+## CI/CD Интеграция с <b><a target="_blank" href="https://jenkins.autotests.cloud/job/diploma-asialuxe.uz-chen/">Jenkins</a></b>
+### Основные Функции
+- Автоматический/ручной запуск тестов после обновления кода.
+- Генерация отчетов о прохождении тестов.
 
 >Для запуска сборки необходимо перейти в раздел `Build with Parameters` и нажать кнопку `Build`
 
@@ -142,6 +145,13 @@ gradle clean browserstack -Ddevicehost=browserstack
 </p>
 
 ## Интеграция с <b><a target="_blank" href="https://jenkins.autotests.cloud/job/diploma-asialuxe.uz-chen/45/allure/#suites/b60d4aa832cfbd8ef59d3cbdec7fc1a8/491a59a39fa228e8/">Allure report</a></b>
+ Инструмент для генерации интерактивных отчетов о тестировании. Он используется для визуализации результатов тестов, включая успешные и проваленные тесты, шаги их выполнения, причины ошибок, скриншоты и другие данные.
+### Основные возможности
+- Графическая визуализация результатов.
+- Интеграция со всеми популярными тестовыми инструментами.
+- Отображение шагов выполнения тестов и логов.
+- Удобный поиск по тестам.
+
 #### Диаграммы прохождения тестов
 `ALLURE REPORT` - отображает дату и время теста, общее количество запущенных тестов, а также диаграмму с процентом и количеством успешных, упавших и сломавшихся в процессе выполнения тестов <br/>
 `TREND` - отображает тенденцию выполнения тестов для всех запусков <br/>
@@ -157,6 +167,13 @@ gradle clean browserstack -Ddevicehost=browserstack
 <img src="images/screenshots/allure-suites.png">
 
 ## Интеграция с <b><a target="_blank" href="https://allure.autotests.cloud/project/4549/launches">Allure TestOps</a></b>
+Платформа для управления процессом тестирования, предоставляющая возможности анализа, организации и визуализации тестовых данных. Она является расширением Allure Report и предназначена для комплексного подхода к управлению тестами в больших командах.
+### Основные особенности Allure TestOps:
+- Централизованное управление тестами
+- Анализ тестирования
+- Интеграция с CI/CD
+- Поддержка ручного и автоматического тестирования
+
 Настройка джобы
 <img src="images/screenshots/allure-testops-job.png">
 Вызов автотестов из allure.autotests.cloud
@@ -166,7 +183,7 @@ gradle clean browserstack -Ddevicehost=browserstack
 ## Уведомления в Telegram с использованием бота
 
 > Бот, созданный в Telegram, после завершения сборки отправляет сообщение с отчетом о прохождении тестов
->
+
 <img src="images/screenshots/telegram-notification.png">
 
 ## Пример выполнения теста в Selenoid
