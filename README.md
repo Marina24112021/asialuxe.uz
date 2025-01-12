@@ -90,10 +90,12 @@ flowchart LR
     B --> D[emulation]
     B --> E[apitest]
     B --> F[fulltest]
-    C --> G[-Ddevicehost=browserstack]
-    D --> H[-Ddevicehost=emulation]
-    E --> I[-Denv=remote]
-    F --> J[-Denv=remote]
+    B --> G[smoketest]
+    C --> H[-Ddevicehost=browserstack]
+    D --> I[-Ddevicehost=emulation]
+    E --> J[-Denv=remote]
+    F --> K[-Denv=remote]
+    F --> L[-Denv=remote]
 ```
 ### Локальный запуск тестов
 Для запуска WEB/API/Mobile автотестов следует открыть IntelliJ IDEA и выполнить в терминале команду:
