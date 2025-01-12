@@ -11,7 +11,7 @@
     + [Допустимые комбинации](#Схема-комбинаций-по-запуску-автотестов)
     + [Локальный запуск тестов](#Локальный-запуск-тестов)
     + [Удаленный запуск тестов](#Удаленный-запуск-тестов)
-+ [CI/CD Интеграция с Jenkins](#CI/CD-Интеграция-с-Jenkins)
++ [Интеграция с Jenkins](#Интеграция-с-Jenkins)
 + [Интеграция с Allure Report](#интеграция-с-allure-report)
     + [Диаграммы прохождения тестов](#Диаграммы-прохождения-тестов)
     + [Развернутый результат прохождения тестов](#Развернутый-результат-прохождения-тестов)
@@ -131,7 +131,7 @@ gradle clean apitest -Denv=remote
 ```
 gradle clean browserstack -Ddevicehost=browserstack
 ```
-## CI/CD Интеграция с <b><a target="_blank" href="https://jenkins.autotests.cloud/job/diploma-asialuxe.uz-chen/">Jenkins</a></b>
+## Интеграция с <b><a target="_blank" href="https://jenkins.autotests.cloud/job/diploma-asialuxe.uz-chen/">Jenkins</a></b>
 ### Основные Функции
 - Автоматический/ручной запуск тестов после обновления кода.
 - Генерация отчетов о прохождении тестов.
