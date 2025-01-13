@@ -181,7 +181,8 @@ gradle clean browserstack -Ddevicehost=browserstack
 <img src="images/screenshots/allure-testops-job.png">
 Вызов автотестов из allure.autotests.cloud
 <img src="images/screenshots/allure-testops.png">
-
+Результат прогона задачи
+<img src="images/screenshots/allure-runs.png">
 Ручные тесты
 <img src="images/screenshots/manual.png">
 ## Уведомления в Telegram с использованием бота
