@@ -186,7 +186,7 @@ gradle clean browserstack -Ddevicehost=browserstack
 Ручные тесты
 <img src="images/screenshots/manual.png">
 ## Уведомления в Telegram с использованием бота
-
+ 
 > Бот, созданный в Telegram, после завершения сборки отправляет сообщение с отчетом о прохождении тестов
 
 <img src="images/screenshots/telegram-notification.png">
