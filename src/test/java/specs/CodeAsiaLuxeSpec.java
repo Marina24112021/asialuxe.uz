@@ -19,8 +19,7 @@ public class CodeAsiaLuxeSpec {
     public final static RequestSpecification requestSpec = with()
             .baseUri("https://api.asialuxe.app")
             .header("Authorization",
-                    "Bearer accessguiF4qtdflB3pMA0eFbXRPtVVlK1a5AtByf3uUT0JoSdysPtdJM5Mt4Psy2fSx1M1736843034LoC1cbpV0IAZzLnf4xNHxvEjQOioUXxEmobile")
-            // "Bearer accessEwm51_fR20Ik-0hSmAuCQDFfE6qKEgyP6raDqIimvKJ6CpOXHj8zVYD7nMEa7MpP1735925110_ALaggLc5mfN414Q-MWlNG-FyeAuTYvPmobile")
+                    "Bearer accessgSEylW0Yee99sq2un27l6_rRbHhkrm_fOqXOBzElnWlNR8SIH60jW0_3ztlxSekR1736846825Ki4mi2AWxnoVsYZxFDC5s3MbCTSSFlXEmobile")
             .filter(withCustomTemplates())
             .contentType(JSON)
             .log().all();
