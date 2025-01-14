@@ -19,7 +19,7 @@ public class BookingTicketAPIMethodsTest {
 
     public static Response getTariff() {
         String buyIdOfTicket = SearchTicket.getCollectionOffers();
-        return step("Создать GET запрос, получить список предлагаемыз тарифов для билета {buyIdOfTicket}", () ->
+        return step("Создать GET запрос, получить список предлагаемых тарифов для билета {buyIdOfTicket}", () ->
                 given(requestSpec)
                         .when()
                         .get(GET_TARIFF + buyIdOfTicket)
@@ -66,6 +66,7 @@ public class BookingTicketAPIMethodsTest {
                 "",
                 Collections.singletonList(passengersComponent),
                 Collections.emptyList(),
+                "",
                 ""
         );
     }

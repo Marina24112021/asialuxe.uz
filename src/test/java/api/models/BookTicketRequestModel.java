@@ -18,5 +18,7 @@ public class BookTicketRequestModel {
     private List<PassengersComponent> passengers;
     private List<String> tariff;
     private String promoCode;
+    private String telegram_name;
+
 
 }
