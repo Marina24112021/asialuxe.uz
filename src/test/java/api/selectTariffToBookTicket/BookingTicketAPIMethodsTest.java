@@ -26,7 +26,7 @@ public class BookingTicketAPIMethodsTest {
                         .then()
                         .spec(successfulResponse200Spec)
                         .extract().response());
-        if (response.jsonPath().getString("data[0].buy_id").isEmpty()) {
+        if (response.jsonPath().getString("data[0].buy_id") == null) {
             return checkToReservationID(buyIdOfTicket);
         }
         return checkToReservationID(response.jsonPath().getString("data[0].buy_id"));
@@ -34,7 +34,7 @@ public class BookingTicketAPIMethodsTest {
 
     public static Response checkToReservationID(String buyIdOfTicket) {
         CheckTariffModel request = new CheckTariffModel(1, buyIdOfTicket);
-        return step("Создать POST запрос, для предварительного бронирования билета {buyIdOfTicket}", () ->
+        return step("Создать POST запрос, для предварительного бронирования билета", () ->
                 given(requestSpec)
                         .body(request)
                         .when()
