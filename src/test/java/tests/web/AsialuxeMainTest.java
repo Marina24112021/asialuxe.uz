@@ -13,7 +13,6 @@ public class AsialuxeMainTest extends TestBase {
     MainPage mainPage = new MainPage();
 
     @Test
-    @WithLogin
     @DisplayName("Отображение сообщения при поиске билетов")
     void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest() {
         mainPage.openMainPage()
