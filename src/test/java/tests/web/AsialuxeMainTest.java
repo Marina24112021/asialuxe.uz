@@ -38,7 +38,7 @@ public class AsialuxeMainTest extends TestBase {
     @DisplayName("Сообщение о некорректном вводе данных авторизации")
     public void checkAlertIsAppearedIfCredentialsIsUncorrectedTest(){
         mainPage.openMainPage()
-                .clickOnLoginToOpenLoginForm()
+                .clickOnOpenLoginForm()
                 .setLogin()
                 .setPassword()
                 .clickOnLogin();
@@ -50,12 +50,23 @@ public class AsialuxeMainTest extends TestBase {
     @DisplayName("Смена цвета поля Номер телефона при регистрации пользователя")
     public void checkInputIsColoredIfRegistrationFormIsEmptyTest(){
         mainPage.openMainPage()
-                .clickOnLoginToOpenLoginForm()
+                .clickOnOpenLoginForm()
                 .clickOnRegistration();
         mainPage.setFullName()
                 .setEmail()
                 .setPasswordRegistration();
         mainPage.clickOnRegistrationFromForm();
         mainPage.checkStyleOfInputPassword();
+    }
+    @Test
+    @DisplayName("Сценарий Сброса пароля без подтверждения")
+    public void checkResetPasswordTest(){
+        mainPage.openMainPage()
+                .clickOnOpenLoginForm()
+                .clickOnPasswordReset()
+                .setEmailReset()
+                .clickReset()
+                .runScriptToFrozenAlertMessage();
+        mainPage.checkMessageToResetPassword();
     }
 }

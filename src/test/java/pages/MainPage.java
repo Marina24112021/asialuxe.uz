@@ -36,6 +36,10 @@ public class MainPage {
     final SelenideElement email = $("#email");
     final SelenideElement password = $("#password");
     final SelenideElement lablePhone = $("[for='phone']");
+    final SelenideElement reset = $(byText("Сброс пароля"));
+    final SelenideElement emailReset = $("[placeholder='Email']");
+    final SelenideElement buttonRegistration = $(byText("Зарегистрироваться"));
+
     @Step("Открыть главную страницу")
     public MainPage openMainPage() {
         open("/ru");
@@ -101,11 +105,25 @@ public class MainPage {
         }
     }
     @Step("Нажать на Войти с главной страницы")
-    public MainPage clickOnLoginToOpenLoginForm() {
+    public MainPage clickOnOpenLoginForm() {
         sidebar.click();
         return this;
     }
-
+    @Step("Нажать на Сброс пароля")
+    public MainPage clickOnPasswordReset() {
+        reset.click();
+        return this;
+    }
+    @Step("Заполнить email")
+    public MainPage setEmailReset() {
+        emailReset.setValue(faker.internet().emailAddress());
+        return this;
+    }
+    @Step("Нажать на Сброс пароля")
+    public MainPage clickReset() {
+        buttonBook.click();
+        return this;
+    }
     @Step("Установить некорректный логин")
     public MainPage setLogin() {
         logEmail.setValue(faker.name().lastName());
@@ -128,7 +146,6 @@ public class MainPage {
     }
     @Step("Нажать на кнопку Зарегистрироваться")
     public void clickOnRegistrationFromForm() {
-        SelenideElement buttonRegistration = $(byText("Зарегистрироваться"));
         buttonRegistration.click();
     }
     @Step("Заполнить ФИО")
@@ -153,12 +170,16 @@ public class MainPage {
                         "if (toastProgressBar) { toastProgressBar.remove(); }");
     }
 
-    @Step("Сообщение об ошибке корректно отображается ")
+    @Step("Получить сообщение об ошибке не корректного ввода логина или пароля ")
     public void checkAlertMessageIsAppeared() {
         logAlert.shouldHave(Condition.text("Логин или пароль не верный"));
     }
     @Step("Цвет текста соответствует дизайну")
     public void checkStyleOfInputPassword() {
         lablePhone.shouldBe(cssValue("color","rgba(255, 0, 0, 1)"));
+    }
+    @Step("Сообщение что код отправлен на почту корректно отображается ")
+    public void checkMessageToResetPassword() {
+        logAlert.shouldHave(Condition.text("Код подтверждения был отправлен на вашу электронную почту!"));
     }
 }
