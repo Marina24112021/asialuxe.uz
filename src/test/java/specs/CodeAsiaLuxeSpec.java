@@ -32,7 +32,6 @@ public class CodeAsiaLuxeSpec {
             .log().all();
     public final static RequestSpecification requestSpec = with()
             .baseUri("https://api.asialuxe.app")
-            .header("Authorization", "")
             .header("Authorization", secretToken.getProperty("path"))
             .filter(withCustomTemplates())
             .contentType(JSON)
