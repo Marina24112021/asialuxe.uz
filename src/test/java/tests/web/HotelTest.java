@@ -8,12 +8,14 @@ import pages.HotelsPage;
 
 
 public class HotelTest extends TestBase {
+    HotelsPage hotelsPage = new HotelsPage();
+
     @Test
     @Tag("smoke")
-    @WithLogin
+    // @WithLogin
     @DisplayName("Проверка по корректному отображению заголовка")
     void checkStaticHeaderPageOfHotelTest() {
-        HotelsPage hotelsPage = new HotelsPage();
+
         hotelsPage.checkStaticInfoTitlesOfHotel();
     }
 
@@ -22,7 +24,9 @@ public class HotelTest extends TestBase {
     @WithLogin
     @DisplayName("Проверка по отображению заголовок о детализации отеля")
     void checkStaticHeaderIsDisplayedOnDetailPageOfHotelTest() {
-        HotelsPage hotelsPage = new HotelsPage();
+
         hotelsPage.checkInfoTitlesOnDetailPage();
     }
+
+
 }

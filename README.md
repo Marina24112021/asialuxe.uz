@@ -20,44 +20,57 @@
 + [Интеграция с Jira](#Интеграция-с-Jira)
 + [Пример выполнения теста в Selenoid](#Пример-выполнения-теста-в-Selenoid)
 
+## Технологии и инструменты
+<div>
+<a href="https://www.java.com/"><img alt="Java" height="50" src="images/logo/Java.svg" width="50"/></a>
+<a href="https://github.com/"><img alt="GitHub" height="50" src="images/logo/GitHub.svg" width="50"/></a>
+<a href="https://www.jenkins.io/"><img alt="Jenkins" height="50" src="images/logo/Jenkins.svg" width="50"/></a>
+<a href="https://github.com/allure-framework/"><img alt="Allure Report" height="50" src="images/logo/Allure.svg" width="50"/></a>
+<a href="https://www.browserstack.com/"><img alt="Browserstack" height="50" src="images/logo/Browserstack.svg" width="50"/></a>
+<a href="https://aerokube.com/selenoid/"><img alt="Selenoid" height="50" src="images/logo/Selenoid.svg" width="50"/></a>
+<a href="https://www.jetbrains.com/idea/"><img alt="InteliJ IDEA" height="50" src="images/logo/Idea.svg" width="50"/></a>
+<a href="https://gradle.org/"><img alt="Gradle" height="50" src="images/logo/Gradle.svg" width="50"/></a>  
+<a href="https://developer.android.com/studio"><img alt="Android Studio" height="50" src="images/logo/Android_Studio.svg" width="50"/></a>
+<a href="https://telegram.org/"><img alt="Telegram" height="50" src="images/logo/Telegram.svg" width="50"/></a>
+
+<a href="https://junit.org/junit5/"><img alt="JUnit 5" height="50" src="images/logo/Junit5.svg" width="50"/></a>
+<a href="https://selenide.org/"><img alt="Selenide" height="50" src="images/logo/Selenide.svg" width="50"/></a>
+<a href="https://rest-assured.io/"><img alt="RestAssured" height="50" src="images/logo/RestAssured.svg" width="50"/></a>
+<a href="https://appium.io/"><img alt="Appium" height="50" src="images/logo/Appium.svg" width="50"/></a>
+<a href="https://qameta.io/"><img alt="Allure TestOps" height="50" src="images/logo/Allure_TO.svg" width="50"/></a> 
+</div>
+
 ## Описание
 Asialuxe Travel — крупнейший туроператор Узбекистана, предлагающий высококачественные услуги как для выездного, так и въездного туризма. <br/>
 
 **Особенности проекта**:
-- `Page Object` шаблон проектирования
-- Использование техноголии `Owner` для придания тестам гибкости и легкости конфигурации
-- Возможность запуска тестов: локально, удалённо, по тегам
+- В проекте используется JUnit 5 — это современный фреймворк для модульного тестирования на Java. Он предоставляет мощные возможности для написания, организации и выполнения тестов, поддерживая аннотации для удобства и гибкости.
+- Jenkins и Allure тесно интегрируются для автоматизации процессов тестирования и наглядного представления результатов. Jenkins используется для запуска тестов, организации пайплайнов и управления CI/CD процессами.
 - Использование <a target="_blank" href="https://app-automate.browserstack.com/">Browserstack.com</a> для прогона автотестов для мобильного устройства
+- Использование техноголии `Owner` для придания тестам гибкости и легкости конфигурации
 - Использование `Lombok` для моделей в API тестах
 - Использование собственных расширений:
     - `@WithLogin` для предварительной авторизации 
 - Возможность запуска тестов напрямую из Allure TestOps
+- Allure TestOps - платформа для управления процессом тестирования, предоставляющая возможности анализа, организации и визуализации тестовых данных. Она является расширением Allure Report и предназначена для комплексного подхода к управлению тестами в больших командах.
+    - Централизованное управление тестами
+    - Анализ тестирования
+    - Интеграция с CI/CD
+    - Поддержка ручного и автоматического тестирования
 - Уведомление о результатах прохождения в Telegram
-- По итогу прохождения автотестов генерируется Allure отчет. Содержание отчета:
+- Allure report - инструмент для генерации интерактивных отчетов о тестировании. Он используется для визуализации результатов тестов, включая успешные и проваленные тесты, шаги их выполнения, причины ошибок, скриншоты и другие данные.
+- По итогу прохождения автотестов генерируется Allure report. Содержание отчета:
     - Шаги теста
     - Скриншот страницы на последнем шаге
     - Исходный код страницы в браузере
     - Логи консоли браузера
     - Видео выполнения автотеста
-
-## Технологии и инструменты
-<div>
-<a href="https://www.java.com/"><img alt="Java" height="50" src="images/logo/Java.svg" width="50"/></a>
-<a href="https://github.com/"><img alt="GitHub" height="50" src="images/logo/GitHub.svg" width="50"/></a>  
-<a href="https://www.jenkins.io/"><img alt="Jenkins" height="50" src="images/logo/Jenkins.svg" width="50"/></a>
-<a href="https://www.browserstack.com/"><img alt="Browserstack" height="50" src="images/logo/Browserstack.svg" width="50"/></a>
-<a href="https://rest-assured.io/"><img alt="RestAssured" height="50" src="images/logo/RestAssured.svg" width="50"/></a>
-<a href="https://junit.org/junit5/"><img alt="JUnit 5" height="50" src="images/logo/Junit5.svg" width="50"/></a>
-<a href="https://selenide.org/"><img alt="Selenide" height="50" src="images/logo/Selenide.svg" width="50"/></a>
-<a href="https://aerokube.com/selenoid/"><img alt="Selenoid" height="50" src="images/logo/Selenoid.svg" width="50"/></a>
-<a href="https://www.jetbrains.com/idea/"><img alt="InteliJ IDEA" height="50" src="images/logo/Idea.svg" width="50"/></a>
-<a href="https://github.com/allure-framework/"><img alt="Allure Report" height="50" src="images/logo/Allure.svg" width="50"/></a>
-<a href="https://gradle.org/"><img alt="Gradle" height="50" src="images/logo/Gradle.svg" width="50"/></a>  
-<a href="https://appium.io/"><img alt="Appium" height="50" src="images/logo/Appium.svg" width="50"/></a>
-<a href="https://developer.android.com/studio"><img alt="Android Studio" height="50" src="images/logo/Android_Studio.svg" width="50"/></a>
-<a href="https://qameta.io/"><img alt="Allure TestOps" height="50" src="images/logo/Allure_TO.svg" width="50"/></a> 
-<a href="https://telegram.org/"><img alt="Telegram" height="50" src="images/logo/Telegram.svg" width="50"/></a>
-</div>
+- Selenoid - высокопроизводительный сервер для управления браузерами. Он используется для выполнения автоматизированных тестов в изолированных окружениях и поддерживает множество версий браузеров.
+    - Основные функции Selenoid
+    - Управление браузерами
+    - Высокая производительность
+    - Видео и логи
+    - Простая настройка
 
 ## Реализованные проверки
 ### Web UI
@@ -127,7 +140,6 @@ gradle clean smoketest -Denv=remote
 gradle clean apitest -Denv=remote
 ```
 #### Mobile автотесты
-Для удаленного запуска автотестов используется Web-приложение <b><a target="_blank" href="https://app-automate.browserstack.com/">Browserstack.com</a></b>
 
 ```
 gradle clean browserstack -Ddevicehost=browserstack
@@ -147,8 +159,7 @@ gradle clean browserstack -Ddevicehost=browserstack
 <img src="images/screenshots/jenkins-build.png"/>
 </p>
 
-## Интеграция с <b><a target="_blank" href="https://jenkins.autotests.cloud/job/diploma-asialuxe.uz-chen/45/allure/#suites/b60d4aa832cfbd8ef59d3cbdec7fc1a8/491a59a39fa228e8/">Allure report</a></b>
- Инструмент для генерации интерактивных отчетов о тестировании. Он используется для визуализации результатов тестов, включая успешные и проваленные тесты, шаги их выполнения, причины ошибок, скриншоты и другие данные.
+## Интеграция с <b><a target="_blank" href="https://jenkins.autotests.cloud/job/diploma-asialuxe.uz-chen/allure/">Allure report</a></b>
 ### Основные возможности
 - Графическая визуализация результатов.
 - Интеграция со всеми популярными тестовыми инструментами.
@@ -170,13 +181,6 @@ gradle clean browserstack -Ddevicehost=browserstack
 <img src="images/screenshots/allure-suites.png">
 
 ## Интеграция с <b><a target="_blank" href="https://allure.autotests.cloud/project/4549/launches">Allure TestOps</a></b>
-Платформа для управления процессом тестирования, предоставляющая возможности анализа, организации и визуализации тестовых данных. Она является расширением Allure Report и предназначена для комплексного подхода к управлению тестами в больших командах.
-### Основные особенности Allure TestOps:
-- Централизованное управление тестами
-- Анализ тестирования
-- Интеграция с CI/CD
-- Поддержка ручного и автоматического тестирования
-
 Настройка джобы
 <img src="images/screenshots/allure-testops-job.png">
 Вызов автотестов из allure.autotests.cloud
@@ -197,13 +201,6 @@ gradle clean browserstack -Ddevicehost=browserstack
 
 >В разделе `Allure:Test Cases` отображаются интегрированные автоматизированные и ручные тесты
 <img src="images/screenshots/jira-with-allure-test-cases.png">
-## Пример выполнения теста в Selenoid
-Высокопроизводительный сервер для управления браузерами в контейнерах Docker. Он используется для выполнения автоматизированных тестов в изолированных окружениях и поддерживает множество версий браузеров.
-Основные функции Selenoid
-- Управление браузерами
-- Высокая производительность
-- Видео и логи
-- Простая настройка
 
 > К каждому UI-тесту в отчете прилагается видео
 <p align="center">

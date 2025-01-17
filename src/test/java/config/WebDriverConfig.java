@@ -12,8 +12,11 @@ public interface WebDriverConfig extends Config {
     @DefaultValue("chrome")
     BrowserNames getBrowserName();
 
+    @Key("browser.baseUrl")
+    String getBaseUrl();
+
     @Key("browser.version")
-    @DefaultValue("100.0")
+    @DefaultValue("114.0")
     String getBrowserVersion();
 
     @Key("browser.size")

@@ -1,62 +1,132 @@
 package pages;
 
-import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import helpers.ReadFileToList;
+import com.github.javafaker.Faker;
+import io.qameta.allure.Step;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
-import static io.qameta.allure.Allure.step;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainPage {
+    Faker faker = new Faker();
     final LocalDate currentDate = LocalDate.now();
     final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-    final ElementsCollection elements = $$("div .grid.grid-cols-2.md\\:grid-cols-none.md\\:flex.gap-4.items-center.w-full.my-6 a");
-    final SelenideElement titleBlock = $(".line-block-text.text-center.mb-5");
-    final ElementsCollection collectionNamesOfAdvantageousOfAgency = $$(".gap-\\[37px\\].grid.md\\:grid-cols-2.lg\\:grid-cols-2.xl\\:grid-cols-4.grid-cols-1");
-    final SelenideElement button = $(".md\\:w-\\[20\\%\\].md\\:block");
+    final SelenideElement button = $("#main_search").lastChild().lastChild();
     final SelenideElement input = $("input[placeholder='Дата вылета']");
     final SelenideElement fromInput = $("[placeholder='Откуда']");
     final SelenideElement toInput = $("[placeholder='Куда']");
     final SelenideElement mainSearch = $("#main_search");
+    final ElementsCollection listWhereFrom = fromInput.parent().sibling(0).$$("ul li");
+    final ElementsCollection listWhereTo = toInput.parent().sibling(0).$$("li");
+    final ElementsCollection textsOfMenu = $$("main.container div div a div p");
+    final SelenideElement sidebar = $("#sidebar");
+    final SelenideElement logEmail = $("#logEmail");
+    final SelenideElement logPass = $("#logPass");
+    final SelenideElement logButton = $("[for='logPass']").parent().parent().lastChild().$("[type='button']");
+    final SelenideElement logAlert = $("div[role='alert'] p");
 
-    public void checkNamesOfMenu() {
-        step("Открыть главную страницу", () -> open("/ru"));
-        List<String> actualListOfTitles = elements.texts();
-        List<String> expectedListOfTitles = Arrays.asList("Авиа", "Отели", "Туры", "Чартеры", "Трансферы");
-        Collections.sort(actualListOfTitles);
-        Collections.sort(expectedListOfTitles);
-        assertEquals(actualListOfTitles, expectedListOfTitles);
+    @Step("Открыть главную страницу")
+    public MainPage openMainPage() {
+        open("/ru");
+        return this;
     }
 
-    public void checkSearchPanel() {
-        step("Открыть главную страницу", () -> open("/ru"));
-        step("Нажать на поле Откуда", () -> fromInput.shouldBe(visible).click());
-        step("Заполнить поле Откуда", () -> fromInput.shouldBe(editable).setValue("Tashkent"));
-        step("Выбрать первое значение из выпадаюшего списка", () -> fromInput.parent().sibling(0).$$("ul li").first().click());
-        step("Заполнить поле Куда", () -> toInput.shouldBe(visible).setValue("Namangan"));
-        step("Выбрать первое значение из выпадаюшего списка", () -> toInput.parent().sibling(0).$$("li").first().click());
-        step("Удалить аттрибут", () -> executeJavaScript("arguments[0].removeAttribute('readonly')", input));
-        step("Заполнить поле Дата ", () -> input.setValue(currentDate.plusDays(2).format(formatter)));
-        step("Нажать на Поиск", () -> button.click());
-        step("Проверить что отображается сообщение о поиске билетов ", () ->
-                mainSearch.parent().sibling(0).shouldHave(text("Пожалуйста, подождите, мы находим для вас лучшие варианты...")));
+    @Step("Нажать на поле Откуда")
+    public MainPage clickOnFieldWhere() {
+        fromInput.shouldBe(visible).click();
+        return this;
     }
 
-    public void checkBlockAboutAgencyCompareThroughFile() {
-        step("Открыть главную страницу", () -> open("/ru"));
-        step("Проверить что отображается нужный заголовок", () -> titleBlock.shouldHave(text("Почему мы")));
-        List<String> expectedTextAboutAgency = step("Открыть файл чтобы получить текст", () ->
-                ReadFileToList.readFile("blockAboutAgency"));
-        step("Проверить что тексты совпадают", () ->
-                collectionNamesOfAdvantageousOfAgency.shouldHave(CollectionCondition.texts(expectedTextAboutAgency)));
+    @Step("Заполнить поле Откуда")
+    public MainPage fillInputWhereFrom() {
+        fromInput.shouldBe(editable).setValue("Tashkent");
+        return this;
+    }
+
+    @Step("Выбрать первое значение из выпадаюшего списка")
+    public MainPage selectFirstValueWhereFrom() {
+        listWhereFrom.first().click();
+        return this;
+    }
+
+    @Step("Заполнить поле Куда")
+    public MainPage fillInputWhereTo() {
+        toInput.shouldBe(visible).setValue("Namangan");
+        return this;
+    }
+
+    @Step("Выбрать первое значение из выпадаюшего списка")
+    public MainPage selectFirstValueWhereTo() {
+        listWhereTo.first().click();
+        return this;
+    }
+
+    @Step("Удалить аттрибут")
+    public MainPage removeAttr() {
+        executeJavaScript("arguments[0].removeAttribute('readonly')", input);
+        return this;
+    }
+
+    @Step("Заполнить поле Дата ")
+    public MainPage fillInputDate() {
+        input.setValue(currentDate.plusDays(2).format(formatter));
+        return this;
+    }
+
+    @Step("Нажать на Поиск")
+    public MainPage clickOnSearch() {
+        button.click();
+        return this;
+    }
+
+    @Step("Проверить что отображается сообщение о поиске билетов ")
+    public void checkMessageOfSearching() {
+        mainSearch.parent().sibling(0).shouldHave(text("Пожалуйста, подождите, мы находим для вас лучшие варианты..."));
+    }
+
+    public void checkTextInMenu(String... listMenuText) {
+        for (int i = 0; i < listMenuText.length; i++) {
+            textsOfMenu.get(i).shouldHave(text(listMenuText[i]));
+        }
+    }
+    @Step("Нажать на Войти с главной страницы")
+    public MainPage clickOnLoginToOpenLoginForm() {
+        sidebar.click();
+        return this;
+    }
+
+    @Step("Установить некорректный логин")
+    public MainPage setLogin() {
+        logEmail.setValue(faker.name().lastName());
+        return this;
+    }
+
+    @Step("Установить некорректный пароль")
+    public MainPage setPassword() {
+        logPass.setValue(faker.phoneNumber().cellPhone());
+        return this;
+    }
+
+    @Step("Нажать на кнопку Войти")
+    public void clickOnLogin() {
+        logButton.click();
+    }
+
+    @Step("Запустить скрипт по заморозке сообщения об ошибке")
+    public void runScriptToFrozenAlertMessage() {
+        Selenide.executeJavaScript(
+                "var toastProgressBar = document.querySelector('.Vue-Toastification__progress-bar');" +
+                        "if (toastProgressBar) { toastProgressBar.remove(); }");
+    }
+
+    @Step("Сообщение об ошибке корректно отображается ")
+    public void checkAlertMessageIsAppeared() {
+        logAlert.shouldHave(Condition.text("Логин или пароль не верный"));
     }
 }

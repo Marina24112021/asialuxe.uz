@@ -9,20 +9,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import javax.annotation.Nonnull;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
+import java.util.Properties;
 
 import static helpers.ReadFileToList.readSecretFiles;
+import static specs.Endpoints.SECRET_FILE_PATH_FOR_BROWSERSTACK;
 
 public class BrowserstackDriver implements WebDriverProvider {
 
     public static final BrowserstackConfig config = ConfigFactory.create(BrowserstackConfig.class, System.getProperties());
 
-    @Nonnull
-    @Override
-    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
-        List<String> credentials = readSecretFiles("browserstackcredentionals");
+    private static MutableCapabilities getMutableCapabilities() {
         MutableCapabilities caps = new MutableCapabilities();
         caps.setCapability("app", config.getApp());
         caps.setCapability("platformName", config.getPlatformName());
@@ -38,8 +37,21 @@ public class BrowserstackDriver implements WebDriverProvider {
 
         caps.setCapability("browserstack.debug", "true");
         caps.setCapability("browserstack.networkLogs", "true");
+        return caps;
+    }
 
-        String browserStackUrl = "https://" + credentials.get(0) + ":" + credentials.get(1) + "@hub-cloud.browserstack.com/wd/hub";
+    @Nonnull
+    @Override
+    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
+        Properties credentials = null;
+        try {
+            credentials = readSecretFiles(SECRET_FILE_PATH_FOR_BROWSERSTACK);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        MutableCapabilities caps = getMutableCapabilities();
+
+        String browserStackUrl = "https://" + credentials.getProperty("login") + ":" + credentials.getProperty("password") + "@hub-cloud.browserstack.com/wd/hub";
         try {
             return new RemoteWebDriver(new URL(browserStackUrl), caps);
         } catch (MalformedURLException e) {

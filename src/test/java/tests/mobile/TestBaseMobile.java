@@ -11,6 +11,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -35,7 +37,7 @@ public class TestBaseMobile {
     }
 
     @AfterEach
-    void addAttachments() {
+    void addAttachments() throws IOException {
         if (devicehost.equals("browserstack")) {
             String sessionId = Selenide.sessionId().toString();
             Attach.addVideo(sessionId);

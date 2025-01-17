@@ -7,31 +7,43 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.MainPage;
 
-
 @Owner("Marina Chen")
 @Tag("smoke")
 public class AsialuxeMainTest extends TestBase {
+    MainPage mainPage = new MainPage();
+
     @Test
     @WithLogin
-    @DisplayName("Проверка отображения сообщения при поиске билетов")
+    @DisplayName("Отображение сообщения при поиске билетов")
     void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest() {
-        MainPage mainPage = new MainPage();
-        mainPage.checkSearchPanel();
+        mainPage.openMainPage()
+                .clickOnFieldWhere()
+                .fillInputWhereFrom()
+                .selectFirstValueWhereFrom()
+                .fillInputWhereTo()
+                .selectFirstValueWhereTo()
+                .removeAttr()
+                .fillInputDate()
+                .clickOnSearch()
+                .checkMessageOfSearching();
     }
 
-    @WithLogin
     @Test
-    @DisplayName("Проверка корректного текста в меню")
-    void checkTitlesOfHeaderMenuIsCorrectDisplayedOnMainPageTest() {
-        MainPage mainPage = new MainPage();
-        mainPage.checkNamesOfMenu();
+    @DisplayName("Проверка текста в меню находящемся в хэдере сайта")
+    public void checkTitlesOfHeaderMenuIsCorrectDisplayedOnMainPageTest() {
+        mainPage.openMainPage()
+                .checkTextInMenu("Авиа", "Отели", "Туры", "Чартеры", "Трансферы");
     }
 
     @Test
-    @WithLogin
-    @DisplayName("Проверка отображения наполнения текста для блока Почему мы")
-    void checkContentOfWhyUsBlockIsOnMainPageTest() {
-        MainPage mainPage = new MainPage();
-        mainPage.checkBlockAboutAgencyCompareThroughFile();
+    @DisplayName("Сообщение о некорректном вводе данных авторизации")
+    public void checkAlertIsAppearedIfCredentialsIsUncorrectedTest(){
+        mainPage.openMainPage()
+                .clickOnLoginToOpenLoginForm()
+                .setLogin()
+                .setPassword()
+                .clickOnLogin();
+        mainPage.runScriptToFrozenAlertMessage();
+        mainPage.checkAlertMessageIsAppeared();
     }
 }
