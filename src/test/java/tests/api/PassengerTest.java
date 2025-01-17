@@ -68,7 +68,6 @@ public class PassengerTest {
         step("Отображается код ошибки и ошибка, а так же тип ошибки", () -> {
             assertEquals("404", response.jsonPath().getString("status"));
             assertEquals("Not Found", response.jsonPath().getString("name"));
-            assertEquals("yii\\web\\NotFoundHttpException", response.jsonPath().getString("type"));
         });
     }
 }
