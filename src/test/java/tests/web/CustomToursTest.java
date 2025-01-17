@@ -45,6 +45,7 @@ public class CustomToursTest extends TestBase {
                     .setPassportNum()
                     .setPassportExpiration();
         });
+        step("Закрыть календарь", () -> customToursPage.closeCalender());
         step("Согласиться с политикой авиакомпании", () -> customToursPage.checkThePolicy());
         step("Нажать на Забронировать", () -> customToursPage.bookTour());
         step("Запустить скрипт по заморозке сообщения об ошибке", () -> customToursPage.runScriptToFrozenAlertMessage());

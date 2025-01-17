@@ -93,6 +93,10 @@ public class CustomToursPage {
     public void setPassportExpiration() {
         dataField.last().setValue("11/11/2027");
     }
+    public CustomToursPage closeCalender() {
+        name.click();
+        return this;
+    }
 
     public CustomToursPage checkThePolicy() {
         checkboxCheck.click();
