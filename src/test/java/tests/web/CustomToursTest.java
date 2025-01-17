@@ -24,7 +24,6 @@ public class CustomToursTest extends TestBase {
                         " Для бронирования, вам не обходимо войти в систему для безопасной транзакции");
     }
 
-
     @Test
     @WithLogin
     @DisplayName("Негативный тест  по бронированию тура. Тест содержит UI+API autotests")

@@ -7,14 +7,13 @@ import io.restassured.response.Response;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
-import static specs.CodeAsiaLuxeSpec.requestSpec;
-import static specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
+import static specs.CodeAsiaLuxeSpec.*;
 import static specs.Endpoints.ORDER;
 
 public class ListOfBookingTickets {
     @Step("Создать GET запрос, получить весь список заказов для бронирования")
     public static String getListOfOrders() {
-        Response response = given(requestSpec)
+        Response response = given(requestSpecForAuth)
                 .when()
                 .get(ORDER)
                 .then()

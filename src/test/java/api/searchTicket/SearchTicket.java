@@ -10,8 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 import static io.restassured.RestAssured.given;
-import static specs.CodeAsiaLuxeSpec.requestSpec;
-import static specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
+import static specs.CodeAsiaLuxeSpec.*;
 import static specs.Endpoints.*;
 
 public class SearchTicket {
@@ -30,7 +29,7 @@ public class SearchTicket {
         SearchTicketRequestModel request = new SearchTicketRequestModel(0, 1,
                 1, 0, 0, "E", "USD", 0,
                 0, 0, 1, List.of(directions));
-        return given(requestSpec)
+        return given(requestSpecForAuth)
                 .body(request)
                 .when()
                 .post(SEARCH)
@@ -46,7 +45,7 @@ public class SearchTicket {
         SearchTicketResponseModel data = getRequestID();
         if (!data.getData().getRequest_id().isEmpty()) {
             do {
-                response = given(requestSpec)
+                response = given(requestSpecForAuth)
                         .when()
                         .get(GET_OFFERS + data.getData().getRequest_id() + GET_OFFERS_CR)
                         .then()

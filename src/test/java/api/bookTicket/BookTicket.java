@@ -11,8 +11,7 @@ import java.util.Collections;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static specs.CodeAsiaLuxeSpec.requestSpec;
-import static specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
+import static specs.CodeAsiaLuxeSpec.*;
 import static specs.Endpoints.*;
 
 public class BookTicket {
@@ -20,7 +19,7 @@ public class BookTicket {
     public static Response getTariff() {
         String buyIdOfTicket = SearchTicket.getCollectionOffers();
         Response response = step("Создать GET запрос, получить список предлагаемых тарифов для выбранного билета", () ->
-                given(requestSpec)
+                given(requestSpecForAuth)
                         .when()
                         .get(GET_TARIFF + buyIdOfTicket)
                         .then()
@@ -35,7 +34,7 @@ public class BookTicket {
     public static Response checkToReservationID(String buyIdOfTicket) {
         CheckTariffModel request = new CheckTariffModel(1, buyIdOfTicket);
         return step("Создать POST запрос, для предварительного бронирования билета", () ->
-                given(requestSpec)
+                given(requestSpecForAuth)
                         .body(request)
                         .when()
                         .post(CHECK)
@@ -78,7 +77,7 @@ public class BookTicket {
         String reservation_id = getTariff().jsonPath().getString("data.reservation_id");
         BookTicketRequestModel request = getBookTicketRequestModel(reservation_id);
         return step("Создать POST запрос, для бронирования билета", () ->
-                given(requestSpec)
+                given(requestSpecForAuth)
                         .body(request)
                         .when()
                         .post(BOOK)
