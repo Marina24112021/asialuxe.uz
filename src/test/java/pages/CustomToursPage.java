@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
@@ -23,11 +24,11 @@ public class CustomToursPage {
             passportNum = $("[placeholder='Серия и № паспорта']"),
             checkboxCheck = $("input[type=checkbox]"),
             bookTour = $(byText("Забронировать")),
-            successMessage = $("div[role='alert']");
+            successMessage = $("div.Vue-Toastification__toast-component-body");
 
     @Step("Открыть главную страницу")
-    public CustomToursPage openTourPage(int id) {
-        open("/ru/custom-tours/" + id);
+    public CustomToursPage openTour(String path) {
+        open(path);
         return this;
     }
 
@@ -53,7 +54,7 @@ public class CustomToursPage {
     }
 
     public CustomToursPage setPhoneNum() {
-        phoneNum.sibling(0).setValue("+998901234567");
+        phoneNum.sibling(0).setValue("");
         return this;
     }
 
@@ -85,7 +86,7 @@ public class CustomToursPage {
     }
 
     public CustomToursPage setPassportNum() {
-        passportNum.setValue("AD2991256");
+        passportNum.setValue("AD"+faker.number().digits(7));
         return this;
     }
 
@@ -98,15 +99,18 @@ public class CustomToursPage {
         return this;
     }
 
+    public void runScriptToFrozenAlertMessage() {
+        Selenide.executeJavaScript(
+                "var toastProgressBar = document.querySelector('.Vue-Toastification__progress-bar');" +
+                        "if (toastProgressBar) { toastProgressBar.remove(); }");
+    }
     public CustomToursPage bookTour() {
         bookTour.click();
         return this;
     }
 
     public CustomToursPage getSuccessMessage() {
-        successMessage.shouldHave(Condition.text("Забронировано успешно!"));
+        successMessage.shouldHave(Condition.text("Ошибка валидации"));
         return this;
     }
-
-
 }

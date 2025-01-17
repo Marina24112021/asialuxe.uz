@@ -84,4 +84,9 @@ task emulation(type: Test) {
     useJUnitPlatform {
         includeTags("emulation")
     }
+task checktest(type: Test) {
+    useJUnitPlatform {
+        includeTags("check")
+    }
+}
 }

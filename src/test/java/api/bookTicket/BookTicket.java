@@ -15,7 +15,6 @@ import static specs.CodeAsiaLuxeSpec.requestSpec;
 import static specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
 import static specs.Endpoints.*;
 
-@SuppressWarnings("SpellCheckingInspection")
 public class BookTicket {
 
     public static Response getTariff() {

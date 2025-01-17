@@ -15,6 +15,14 @@ import static io.restassured.http.ContentType.JSON;
 import static specs.Endpoints.SECRET_FILE_PATH_FOR_AUTHORIZATION;
 
 public class CodeAsiaLuxeSpec {
+    static Properties secretToken;
+    static {
+        try {
+            secretToken = readSecretFiles(SECRET_FILE_PATH_FOR_AUTHORIZATION);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public final static ResponseSpecification successfulResponse200Spec = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .log(ALL)
@@ -23,25 +31,17 @@ public class CodeAsiaLuxeSpec {
             .expectStatusCode(404)
             .log(ALL)
             .build();
-     static Properties secretToken;
     public final static RequestSpecification requestSpecForAuth = with()
             .baseUri("https://api.asialuxe.app")
             .header("Authorization", secretToken.getProperty("pathauth"))
             .filter(withCustomTemplates())
             .contentType(JSON)
             .log().all();
+
     public final static RequestSpecification requestSpec = with()
             .baseUri("https://api.asialuxe.app")
             .header("Authorization", secretToken.getProperty("path"))
             .filter(withCustomTemplates())
             .contentType(JSON)
             .log().all();
-
-    static {
-        try {
-            secretToken = readSecretFiles(SECRET_FILE_PATH_FOR_AUTHORIZATION);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
