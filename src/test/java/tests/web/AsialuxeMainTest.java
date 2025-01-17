@@ -45,4 +45,17 @@ public class AsialuxeMainTest extends TestBase {
         mainPage.runScriptToFrozenAlertMessage();
         mainPage.checkAlertMessageIsAppeared();
     }
+
+    @Test
+    @DisplayName("Смена цвета поля Номер телефона при регистрации пользователя")
+    public void checkInputIsColoredIfRegistrationFormIsEmptyTest(){
+        mainPage.openMainPage()
+                .clickOnLoginToOpenLoginForm()
+                .clickOnRegistration();
+        mainPage.setFullName()
+                .setEmail()
+                .setPasswordRegistration();
+        mainPage.clickOnRegistrationFromForm();
+        mainPage.checkStyleOfInputPassword();
+    }
 }

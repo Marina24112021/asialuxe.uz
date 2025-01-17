@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage {
@@ -30,7 +31,11 @@ public class MainPage {
     final SelenideElement logPass = $("#logPass");
     final SelenideElement logButton = $("[for='logPass']").parent().parent().lastChild().$("[type='button']");
     final SelenideElement logAlert = $("div[role='alert'] p");
-
+    final SelenideElement buttonBook = $("button[type='primary']");
+    final SelenideElement fullName = $("#fullname");
+    final SelenideElement email = $("#email");
+    final SelenideElement password = $("#password");
+    final SelenideElement lablePhone = $("[for='phone']");
     @Step("Открыть главную страницу")
     public MainPage openMainPage() {
         open("/ru");
@@ -109,13 +114,36 @@ public class MainPage {
 
     @Step("Установить некорректный пароль")
     public MainPage setPassword() {
-        logPass.setValue(faker.phoneNumber().cellPhone());
+        logPass.setValue(faker.internet().password());
         return this;
     }
 
     @Step("Нажать на кнопку Войти")
     public void clickOnLogin() {
         logButton.click();
+    }
+    @Step("Нажать на кнопку Зарегистрироваться")
+    public void clickOnRegistration() {
+        buttonBook.click();
+    }
+    @Step("Нажать на кнопку Зарегистрироваться")
+    public void clickOnRegistrationFromForm() {
+        SelenideElement buttonRegistration = $(byText("Зарегистрироваться"));
+        buttonRegistration.click();
+    }
+    @Step("Заполнить ФИО")
+    public MainPage setFullName() {
+        fullName.setValue(faker.name().fullName());
+        return this;
+    }
+    @Step("Заполнить email")
+    public MainPage setEmail() {
+        email.setValue(faker.internet().emailAddress());
+        return this;
+    }
+    @Step("Заполнить password")
+    public void setPasswordRegistration() {
+        password.setValue(faker.internet().password());
     }
 
     @Step("Запустить скрипт по заморозке сообщения об ошибке")
@@ -128,5 +156,9 @@ public class MainPage {
     @Step("Сообщение об ошибке корректно отображается ")
     public void checkAlertMessageIsAppeared() {
         logAlert.shouldHave(Condition.text("Логин или пароль не верный"));
+    }
+    @Step("Цвет текста соответствует дизайну")
+    public void checkStyleOfInputPassword() {
+        lablePhone.shouldBe(cssValue("color","rgba(255, 0, 0, 1)"));
     }
 }
