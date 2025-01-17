@@ -15,7 +15,7 @@ import static specs.Endpoints.*;
 
 public class SearchTicket {
     static final Random random = new Random();
-    static final String dateDep = "2025-" + (random.nextInt(6) + 1) + "-" + (random.nextInt(25) + 1);
+    static final String dateDep = "2025-" + (random.nextInt(3) + 1) + "-" + (random.nextInt(25) + 1);
 
     @Step("Создать POST запрос, для поиска билета. Данные о направлении и дате отправки")
     public static SearchTicketResponseModel getRequestID() {
@@ -29,7 +29,7 @@ public class SearchTicket {
         SearchTicketRequestModel request = new SearchTicketRequestModel(0, 1,
                 1, 0, 0, "E", "USD", 0,
                 0, 0, 1, List.of(directions));
-        return given(requestSpecForAuth)
+        return given(requestSpec)
                 .body(request)
                 .when()
                 .post(SEARCH)
@@ -45,7 +45,7 @@ public class SearchTicket {
         SearchTicketResponseModel data = getRequestID();
         if (!data.getData().getRequest_id().isEmpty()) {
             do {
-                response = given(requestSpecForAuth)
+                response = given(requestSpec)
                         .when()
                         .get(GET_OFFERS + data.getData().getRequest_id() + GET_OFFERS_CR)
                         .then()

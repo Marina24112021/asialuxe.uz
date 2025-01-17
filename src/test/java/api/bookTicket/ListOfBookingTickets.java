@@ -13,7 +13,7 @@ import static specs.Endpoints.ORDER;
 public class ListOfBookingTickets {
     @Step("Создать GET запрос, получить весь список заказов для бронирования")
     public static String getListOfOrders() {
-        Response response = given(requestSpecForAuth)
+        Response response = given(requestSpec)
                 .when()
                 .get(ORDER)
                 .then()

@@ -19,7 +19,7 @@ public class BookTicket {
     public static Response getTariff() {
         String buyIdOfTicket = SearchTicket.getCollectionOffers();
         Response response = step("Создать GET запрос, получить список предлагаемых тарифов для выбранного билета", () ->
-                given(requestSpecForAuth)
+                given(requestSpec)
                         .when()
                         .get(GET_TARIFF + buyIdOfTicket)
                         .then()
@@ -34,7 +34,7 @@ public class BookTicket {
     public static Response checkToReservationID(String buyIdOfTicket) {
         CheckTariffModel request = new CheckTariffModel(1, buyIdOfTicket);
         return step("Создать POST запрос, для предварительного бронирования билета", () ->
-                given(requestSpecForAuth)
+                given(requestSpec)
                         .body(request)
                         .when()
                         .post(CHECK)
@@ -60,7 +60,7 @@ public class BookTicket {
                 0
         );
         return new BookTicketRequestModel(
-                "Trafimov Ivan Sergeevich",
+                "Trafimiv",
                 "ivan.trafimov@gmail.com",
                 "+998908885005",
                 reservation_id,
@@ -77,7 +77,7 @@ public class BookTicket {
         String reservation_id = getTariff().jsonPath().getString("data.reservation_id");
         BookTicketRequestModel request = getBookTicketRequestModel(reservation_id);
         return step("Создать POST запрос, для бронирования билета", () ->
-                given(requestSpecForAuth)
+                given(requestSpec)
                         .body(request)
                         .when()
                         .post(BOOK)
