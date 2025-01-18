@@ -26,6 +26,10 @@ public class CodeAsiaLuxeSpec {
             .expectStatusCode(200)
             .log(ALL)
             .build();
+    public final static ResponseSpecification failResponse422Spec = new ResponseSpecBuilder()
+            .expectStatusCode(422)
+            .log(ALL)
+            .build();
     public final static ResponseSpecification failResponse402Spec = new ResponseSpecBuilder()
             .expectStatusCode(404)
             .log(ALL)

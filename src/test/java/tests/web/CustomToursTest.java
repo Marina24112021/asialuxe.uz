@@ -30,8 +30,7 @@ public class CustomToursTest extends TestBase {
     @Tag("smoke")
     @Tag("api")
     public void checkBookingTourTest() {
-        String linkToBookTour = getURLToBookTour();
-        step("Открыть собранный URL для бронирования тура", () -> customToursPage.openTour(linkToBookTour));
+        step("Открыть собранный URL для бронирования тура", () -> customToursPage.openTour(getURLToBookTour()));
         step("Заполнить данные пассажира", () -> {
             customToursPage.setFullName()
                     .setEmail()

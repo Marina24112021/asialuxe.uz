@@ -10,8 +10,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.ResponseSpecification;
 
 import static io.restassured.RestAssured.given;
-import static specs.CodeAsiaLuxeSpec.requestSpecForAuth;
-import static specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
+import static specs.CodeAsiaLuxeSpec.*;
 import static specs.Endpoints.*;
 
 public class Passengers {
@@ -31,7 +30,7 @@ public class Passengers {
                 1,
                 "PASSPORT"
         );
-        return given(requestSpecForAuth)
+        return given(requestSpec)
                 .body(request)
                 .when()
                 .post(NEW_PASSENGER)
@@ -42,7 +41,7 @@ public class Passengers {
 
     @Step("Запрос по получению полного списка пассажиров")
     public static ListOfPassengersResponseModel getListOfPassengers() {
-        return given(requestSpecForAuth)
+        return given(requestSpec)
                 .when()
                 .get(LIST_PASSENGERS)
                 .then()
@@ -53,7 +52,7 @@ public class Passengers {
     @Step("Запрос по удалению пассажира")
     public static Response deletePassenger(Integer newId, ResponseSpecification spec) {
         String deletePassengerPath = DELETE_UPDATE_PASSENGER + newId;
-        return given(requestSpecForAuth)
+        return given(requestSpec)
                 .when()
                 .delete(deletePassengerPath)
                 .then()
@@ -88,7 +87,7 @@ public class Passengers {
                 response.getData().getUser_id(),
                 response.getData().getId()
         );
-        given(requestSpecForAuth)
+        given(requestSpec)
                 .body(request)
                 .when()
                 .put(DELETE_UPDATE_PASSENGER + response.getData().getId())

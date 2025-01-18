@@ -2,6 +2,7 @@ package api.bookTicket;
 
 import api.models.bookTicket.BookTicketRequestModel;
 import api.models.bookTicket.CheckTariffModel;
+import api.models.bookTicket.ErrorModel;
 import api.models.passangers.components.PassengersComponent;
 import api.searchTicket.SearchTicket;
 import io.qameta.allure.Step;
@@ -11,8 +12,7 @@ import java.util.Collections;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static specs.CodeAsiaLuxeSpec.requestSpec;
-import static specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
+import static specs.CodeAsiaLuxeSpec.*;
 import static specs.Endpoints.*;
 
 public class BookTicket {
@@ -63,7 +63,7 @@ public class BookTicket {
         return new BookTicketRequestModel(
                 "Yuldashev Anvar ",
                 "yu.anvar@gmail.cim",
-                "+998909997887",
+                "",
                 reservation_id,
                 1,
                 "",
@@ -74,7 +74,7 @@ public class BookTicket {
         );
     }
 
-    public static Response bookTicket() {
+    public static ErrorModel bookTicket() {
         String reservation_id = getTariff().jsonPath().getString("data.reservation_id");
         BookTicketRequestModel request = getBookTicketRequestModel(reservation_id);
         return step("Создать POST запрос, для бронирования билета", () ->
@@ -83,7 +83,7 @@ public class BookTicket {
                         .when()
                         .post(BOOK)
                         .then()
-                        .spec(successfulResponse200Spec)
-                        .extract().response());
+                        .spec(failResponse422Spec)
+                        .extract().as(ErrorModel.class));
     }
 }
