@@ -25,7 +25,7 @@ public class BookTicketTest {
         });
     }
     @Test
-    @DisplayName("Негативный тест по проверке бронирования билета с невидными данными")
+    @DisplayName("Негативный тест по проверке бронирования билета с невалидными данными")
     void negativeIfDataOfPassengerIsIncorrect(){
         step("Отображается код ошибки и ошибка, а так же тип ошибки", () -> {
             assertEquals("Validation error!", bookTicket().getMessage());

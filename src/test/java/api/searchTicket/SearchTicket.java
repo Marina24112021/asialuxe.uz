@@ -16,7 +16,7 @@ import static specs.Endpoints.*;
 
 public class SearchTicket {
     static final Random random = new Random();
-    static final String dateDep = "2025-" + (random.nextInt(3) + 1) + "-" + (random.nextInt(25) + 1);
+    static final String dateDep = "2025-4-6";
 
     @Step("Создать POST запрос, для поиска билета. Данные о направлении и дате отправки")
     public static SearchTicketResponseModel getRequestID() {

@@ -1,10 +1,7 @@
 package api.bookTicket;
 
-import api.models.bookTicket.components.DataOfOrdersComponent;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-
-import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static specs.CodeAsiaLuxeSpec.requestSpec;
