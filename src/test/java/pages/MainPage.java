@@ -38,7 +38,7 @@ public class MainPage {
     final SelenideElement reset = $(byText("Сброс пароля"));
     final SelenideElement emailReset = $("[placeholder='Email']");
     final SelenideElement buttonRegistration = $(byText("Зарегистрироваться"));
-    Faker faker = new Faker();
+    final Faker faker = new Faker();
 
     @Step("Открыть главную страницу")
     public MainPage openMainPage() {
@@ -58,7 +58,7 @@ public class MainPage {
         return this;
     }
 
-    @Step("Выбрать первое значение из выпадаюшего списка")
+    @Step("Выбрать первое значение из выпадающего списка")
     public MainPage selectFirstValueWhereFrom() {
         listWhereFrom.first().click();
         return this;
@@ -70,7 +70,7 @@ public class MainPage {
         return this;
     }
 
-    @Step("Выбрать первое значение из выпадаюшего списка")
+    @Step("Выбрать первое значение из выпадающего списка")
     public MainPage selectFirstValueWhereTo() {
         listWhereTo.first().click();
         return this;

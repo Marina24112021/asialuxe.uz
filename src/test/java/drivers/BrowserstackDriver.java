@@ -26,7 +26,7 @@ public class BrowserstackDriver implements WebDriverProvider {
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
         MutableCapabilities caps = new MutableCapabilities();
 
-        Properties credentials = null;
+        Properties credentials;
         try {
             credentials = readSecretFiles(SECRET_FILE_PATH_FOR_BROWSERSTACK);
         } catch (IOException e) {

@@ -9,7 +9,7 @@ import screens.MainScreen;
 @Tag("browserstack")
 
 public class MobileTest extends TestBaseMobile {
-    MainScreen main = new MainScreen();
+    final MainScreen main = new MainScreen();
 
     @Test
     @Description("Проверка статичных заголовок на основной странице")

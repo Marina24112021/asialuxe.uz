@@ -13,7 +13,7 @@ import static io.qameta.allure.Allure.step;
 @Owner("Marina Chen")
 @Tag("smoke")
 public class CustomToursTest extends TestBase {
-    CustomToursPage customToursPage = new CustomToursPage();
+    final CustomToursPage customToursPage = new CustomToursPage();
 
     @Test
     @DisplayName("Требование авторизации при бронировании тура без входа в систему")

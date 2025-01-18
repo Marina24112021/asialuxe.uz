@@ -34,7 +34,7 @@ public class CodeAsiaLuxeSpec {
             .expectStatusCode(404)
             .log(ALL)
             .build();
-    static Properties secretToken;
+    static final Properties secretToken;
     public final static RequestSpecification requestSpecForAuth = with()
             .baseUri("https://api.asialuxe.app")
             .header("Authorization", secretToken.getProperty("pathauth"))

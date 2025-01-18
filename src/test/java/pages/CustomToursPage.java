@@ -11,20 +11,20 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CustomToursPage {
-    Faker faker = new Faker();
-    SelenideElement buttonBook = $(".grow button[type='primary']");
-    SelenideElement messageText = $$("div[data-headlessui-state='open']").last().lastChild().$("div");
-    ElementsCollection dataField = $$("input[data-test='dp-input']"),
-            listBox = $$(".block.truncate");
-    SelenideElement fullName = $("input[placeholder='Полное имя']"),
-            email = $("input[placeholder='Эл. адрес']"),
-            phoneNum = $("div[aria-label='Country Code Selector']"),
-            lastName = $("[placeholder='Фамилия']"),
-            name = $("[placeholder='Имя']"),
-            passportNum = $("[placeholder='Серия и № паспорта']"),
-            checkboxCheck = $("input[type=checkbox]"),
-            bookTour = $(byText("Забронировать")),
-            successMessage = $("div.Vue-Toastification__toast-component-body");
+    final Faker faker = new Faker();
+    final SelenideElement buttonBook = $(".grow button[type='primary']");
+    final SelenideElement messageText = $$("div[data-headlessui-state='open']").last().lastChild().$("div");
+    final ElementsCollection dataField = $$("input[data-test='dp-input']");
+    final ElementsCollection listBox = $$(".block.truncate");
+    final SelenideElement fullName = $("input[placeholder='Полное имя']");
+    final SelenideElement email = $("input[placeholder='Эл. адрес']");
+    final SelenideElement phoneNum = $("div[aria-label='Country Code Selector']");
+    final SelenideElement lastName = $("[placeholder='Фамилия']");
+    final SelenideElement name = $("[placeholder='Имя']");
+    final SelenideElement passportNum = $("[placeholder='Серия и № паспорта']");
+    final SelenideElement checkboxCheck = $("input[type=checkbox]");
+    final SelenideElement bookTour = $(byText("Забронировать"));
+    final SelenideElement successMessage = $("div.Vue-Toastification__toast-component-body");
 
     @Step("Открыть главную страницу")
     public CustomToursPage openTour(String path) {

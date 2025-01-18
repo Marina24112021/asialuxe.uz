@@ -7,7 +7,6 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 
 import java.util.List;
-import java.util.Random;
 
 import static io.restassured.RestAssured.given;
 import static specs.CodeAsiaLuxeSpec.requestSpec;
@@ -15,7 +14,6 @@ import static specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
 import static specs.Endpoints.*;
 
 public class SearchTicket {
-    static final Random random = new Random();
     static final String dateDep = "2025-4-6";
 
     @Step("Создать POST запрос, для поиска билета. Данные о направлении и дате отправки")

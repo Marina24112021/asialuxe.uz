@@ -9,7 +9,7 @@ import pages.MainPage;
 @Owner("Marina Chen")
 @Tag("smoke")
 public class AsialuxeMainTest extends TestBase {
-    MainPage mainPage = new MainPage();
+    final MainPage mainPage = new MainPage();
 
     @Test
     @DisplayName("Отображение сообщения при поиске билетов")

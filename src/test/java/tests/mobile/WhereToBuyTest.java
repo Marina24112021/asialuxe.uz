@@ -8,7 +8,7 @@ import screens.WhereToBuyScreen;
 @Tag("emulation")
 @Tag("browserstack")
 public class WhereToBuyTest extends TestBaseMobile {
-    WhereToBuyScreen user = new WhereToBuyScreen();
+    final WhereToBuyScreen user = new WhereToBuyScreen();
 
     @Test
     @Description("Проверка адреса филиала на странице Офисы продаж")

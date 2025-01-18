@@ -8,7 +8,7 @@ import screens.AboutCompanyScreen;
 @Tag("emulation")
 @Tag("browserstack")
 public class AboutCompanyTest extends TestBaseMobile {
-    AboutCompanyScreen about = new AboutCompanyScreen();
+    final AboutCompanyScreen about = new AboutCompanyScreen();
     @Test
     @Description("Проверка статичного заголовка на странице О Компании")
     void checkListOfTitleInProfileTest() {

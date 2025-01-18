@@ -8,7 +8,7 @@ import screens.PromotionArchive;
 @Tag("emulation")
 @Tag("browserstack")
 public class PromotionArchiveTest extends TestBaseMobile{
-    PromotionArchive prom = new PromotionArchive();
+    final PromotionArchive prom = new PromotionArchive();
 
     @Test
     @Description("Проверка адреса филиала на странице Офисы продаж")
