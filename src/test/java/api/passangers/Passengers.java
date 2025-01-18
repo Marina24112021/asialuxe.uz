@@ -10,7 +10,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.ResponseSpecification;
 
 import static io.restassured.RestAssured.given;
-import static specs.CodeAsiaLuxeSpec.*;
+import static specs.CodeAsiaLuxeSpec.requestSpecForAuth;
+import static specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
 import static specs.Endpoints.*;
 
 public class Passengers {

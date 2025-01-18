@@ -12,13 +12,26 @@ public class PromotionArchive {
     final SelenideElement titleArchive = $x("//android.webkit.WebView[@text=\"Архив акций\"]");
     final SelenideElement titleMore = $x("//android.widget.TextView[@text=\"Узнать подробнее\"]");
 
-    public void checkTitleOfArticle() {
-        step("Нажать в поле меню на Профиль", () -> buttonProfile.click());
-        step("Нажать на Архив акций", () -> buttonArchive.click());
-        String title = step("Получить значение заголовка статьи", () -> titleArchive.getText());
-        String titleServ = step("Получить значение заголовка статьи", () -> titleMore.getText());
-        assertEquals("Архив акций", title);
-        assertEquals("Узнать подробнее", titleServ);
+    public PromotionArchive clickOnProfile() {
+        step("Нажать в поле меню на Профиль",
+                () -> buttonProfile.click());
+        return this;
     }
 
+    public PromotionArchive clickOnArchive() {
+        step("Нажать на Архив акций",
+                () -> buttonArchive.click());
+        return this;
+    }
+
+    public PromotionArchive checkTitleOfArchive() {
+        assertEquals("Архив акций",
+                step("Получить значение заголовка статьи", titleArchive::getText));
+        return this;
+    }
+
+    public void checkTitleOfServices() {
+        assertEquals("Узнать подробнее",
+                step("Получить значение заголовка статьи", titleMore::getText));
+    }
 }

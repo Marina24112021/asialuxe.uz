@@ -14,12 +14,38 @@ public class MainScreen {
     final SelenideElement titleTour = $x("//android.widget.TextView[@text=\"Туры\"]");
     final SelenideElement titleCatalog = $x("(//android.widget.TextView[@text=\"Каталог\"])[1]");
 
-    public void checkStaticTitles() {
-        assertEquals("Привет, Путешественник", step("Взять название страницы ", () -> titleHi.getText()));
-        assertEquals("Когда, если не сейчас ?", step("Взять название страницы ", () -> titleTop.getText()));
-        assertEquals("Отели", step("Взять название статьи ", () -> titleHotel.getText()));
-        assertEquals("Авиа", step("Взять название страницы ", () -> titleAvia.getText()));
-        assertEquals("Туры", step("Взять название страницы ", () -> titleTour.getText()));
-        assertEquals("Каталог", step("Взять название страницы ", () -> titleCatalog.getText()));
+    public MainScreen checkTextOnMainPage() {
+        assertEquals("Привет, Путешественник",
+                step("Взять название страницы ", titleHi::getText));
+        return this;
+    }
+
+    public MainScreen checkStaticTextProposal() {
+        assertEquals("Когда, если не сейчас ?",
+                step("Взять название страницы ", titleTop::getText));
+        return this;
+    }
+
+    public MainScreen checkTitleHotel() {
+        assertEquals("Отели",
+                step("Взять название статьи ", titleHotel::getText));
+        return this;
+    }
+
+    public MainScreen checkTitleAvia() {
+        assertEquals("Авиа",
+                step("Взять название страницы ", titleAvia::getText));
+        return this;
+    }
+
+    public MainScreen checkTitleTour() {
+        assertEquals("Туры",
+                step("Взять название страницы ", titleTour::getText));
+        return this;
+    }
+
+    public void checkTitleCatalog() {
+        assertEquals("Каталог",
+                step("Взять название страницы ", titleCatalog::getText));
     }
 }

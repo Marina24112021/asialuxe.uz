@@ -12,13 +12,25 @@ public class WhereToBuyScreen {
     final SelenideElement addressAbout = $x("//android.widget.TextView[@text=\"Адрес:Ташкент, Ц15, Жангох 9\"]");
     final SelenideElement titleArticle = $x("//android.widget.TextView[@text=\"Узбекистан\"]");
 
-    public void checkAddressesOfSalesAgenciesTest() {
-        step("Нажать в поле меню на Профиль", () -> buttonProfile.click());
-        step("Нажать на Где купить?", () -> buttonWhereToBuy.click());
-        String titleAbout = step("Получить данные адреса", () -> addressAbout.getText());
-        String titleExpArticle = step("Получить название страны", () -> titleArticle.getText());
-        assertEquals("Адрес:Ташкент, Ц15, Жангох 9", titleAbout);
-        assertEquals("Узбекистан", titleExpArticle);
+    public WhereToBuyScreen clickOnProfile() {
+        step("Нажать в поле меню на Профиль",
+                () -> buttonProfile.click());
+        return this;
     }
 
+    public WhereToBuyScreen clickOnWhereToBuy() {
+        step("Нажать на Где купить?", () -> buttonWhereToBuy.click());
+        return this;
+    }
+
+    public WhereToBuyScreen checkTitleOfAbout() {
+        assertEquals("Адрес:Ташкент, Ц15, Жангох 9",
+                step("Получить данные адреса", addressAbout::getText));
+        return this;
+    }
+
+    public void checkTitleOfExpArticle() {
+        assertEquals("Узбекистан",
+                step("Получить название страны", titleArticle::getText));
+    }
 }

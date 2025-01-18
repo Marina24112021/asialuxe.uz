@@ -7,7 +7,8 @@ import io.restassured.response.Response;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
-import static specs.CodeAsiaLuxeSpec.*;
+import static specs.CodeAsiaLuxeSpec.requestSpec;
+import static specs.CodeAsiaLuxeSpec.successfulResponse200Spec;
 import static specs.Endpoints.ORDER;
 
 public class ListOfBookingTickets {

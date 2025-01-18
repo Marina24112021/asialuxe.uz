@@ -7,18 +7,30 @@ import static io.qameta.allure.Allure.step;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class AboutCompanyScreenTest {
+public class AboutCompanyScreen {
     final SelenideElement buttonProfile = $x("//android.view.View[@content-desc=\"logo Профиль\"]");
     final SelenideElement buttonAboutCompany = $x("//android.widget.TextView[@text=\"О компании\"]");
     final SelenideElement titleAboutCompany = $x("//android.widget.TextView[@text=\"Asialuxe Travel\"]");
     final SelenideElement titleServices = $x("//android.widget.TextView[@text=\"Услуги выездного туризма\"]");
 
-    public void checkListOfTitles() {
+    public AboutCompanyScreen clickOnProfile() {
         step("Нажать в поле меню на Профиль", () -> buttonProfile.click());
+        return this;
+    }
+
+    public AboutCompanyScreen clickOnAboutCompany() {
         step("Нажать на О Компании", () -> buttonAboutCompany.click());
-        String titleAsiatravel = step("Получить значение заголовка статьи", () -> titleAboutCompany.getText());
-        String titleServ = step("Получить значение заголовка статьи", () -> titleServices.getText());
-        assertEquals("Asialuxe Travel", titleAsiatravel);
-        assertEquals("Услуги выездного туризма", titleServ);
+        return this;
+    }
+
+    public AboutCompanyScreen checkTitleOfAboutCompany() {
+        step("Получить значение заголовка статьи", () ->
+                assertEquals("Asialuxe Travel", titleAboutCompany.getText()));
+        return this;
+    }
+
+    public void checkTitleOfServices() {
+        step("Получить значение заголовка статьи", () ->
+                assertEquals("Услуги выездного туризма", titleServices.getText()));
     }
 }

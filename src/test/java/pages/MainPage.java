@@ -15,7 +15,6 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MainPage {
-    Faker faker = new Faker();
     final LocalDate currentDate = LocalDate.now();
     final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     final SelenideElement button = $("#main_search").lastChild().lastChild();
@@ -39,6 +38,7 @@ public class MainPage {
     final SelenideElement reset = $(byText("Сброс пароля"));
     final SelenideElement emailReset = $("[placeholder='Email']");
     final SelenideElement buttonRegistration = $(byText("Зарегистрироваться"));
+    Faker faker = new Faker();
 
     @Step("Открыть главную страницу")
     public MainPage openMainPage() {
@@ -104,26 +104,31 @@ public class MainPage {
             textsOfMenu.get(i).shouldHave(text(listMenuText[i]));
         }
     }
+
     @Step("Нажать на Войти с главной страницы")
     public MainPage clickOnOpenLoginForm() {
         sidebar.click();
         return this;
     }
+
     @Step("Нажать на Сброс пароля")
     public MainPage clickOnPasswordReset() {
         reset.click();
         return this;
     }
+
     @Step("Заполнить email")
     public MainPage setEmailReset() {
         emailReset.setValue(faker.internet().emailAddress());
         return this;
     }
+
     @Step("Нажать на Сброс пароля")
     public MainPage clickReset() {
         buttonBook.click();
         return this;
     }
+
     @Step("Установить некорректный логин")
     public MainPage setLogin() {
         logEmail.setValue(faker.name().lastName());
@@ -140,24 +145,29 @@ public class MainPage {
     public void clickOnLogin() {
         logButton.click();
     }
+
     @Step("Нажать на кнопку Зарегистрироваться")
     public void clickOnRegistration() {
         buttonBook.click();
     }
+
     @Step("Нажать на кнопку Зарегистрироваться")
     public void clickOnRegistrationFromForm() {
         buttonRegistration.click();
     }
+
     @Step("Заполнить ФИО")
     public MainPage setFullName() {
         fullName.setValue(faker.name().fullName());
         return this;
     }
+
     @Step("Заполнить email")
     public MainPage setEmail() {
         email.setValue(faker.internet().emailAddress());
         return this;
     }
+
     @Step("Заполнить password")
     public void setPasswordRegistration() {
         password.setValue(faker.internet().password());
@@ -174,10 +184,12 @@ public class MainPage {
     public void checkAlertMessageIsAppeared() {
         logAlert.shouldHave(Condition.text("Логин или пароль не верный"));
     }
+
     @Step("Цвет текста соответствует дизайну")
     public void checkStyleOfInputPassword() {
-        lablePhone.shouldBe(cssValue("color","rgba(255, 0, 0, 1)"));
+        lablePhone.shouldBe(cssValue("color", "rgba(255, 0, 0, 1)"));
     }
+
     @Step("Сообщение что код отправлен на почту корректно отображается ")
     public void checkMessageToResetPassword() {
         logAlert.shouldHave(Condition.text("Код подтверждения был отправлен на вашу электронную почту!"));

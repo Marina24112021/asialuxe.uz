@@ -1,6 +1,5 @@
 package tests.web;
 
-import helpers.extensions.WithLogin;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -36,7 +35,7 @@ public class AsialuxeMainTest extends TestBase {
 
     @Test
     @DisplayName("Сообщение о некорректном вводе данных авторизации")
-    public void checkAlertIsAppearedIfCredentialsIsUncorrectedTest(){
+    public void checkAlertIsAppearedIfCredentialsIsUncorrectedTest() {
         mainPage.openMainPage()
                 .clickOnOpenLoginForm()
                 .setLogin()
@@ -48,7 +47,7 @@ public class AsialuxeMainTest extends TestBase {
 
     @Test
     @DisplayName("Смена цвета поля Номер телефона при регистрации пользователя")
-    public void checkInputIsColoredIfRegistrationFormIsEmptyTest(){
+    public void checkInputIsColoredIfRegistrationFormIsEmptyTest() {
         mainPage.openMainPage()
                 .clickOnOpenLoginForm()
                 .clickOnRegistration();
@@ -58,9 +57,10 @@ public class AsialuxeMainTest extends TestBase {
         mainPage.clickOnRegistrationFromForm();
         mainPage.checkStyleOfInputPassword();
     }
+
     @Test
     @DisplayName("Сценарий Сброса пароля без подтверждения")
-    public void checkResetPasswordTest(){
+    public void checkResetPasswordTest() {
         mainPage.openMainPage()
                 .clickOnOpenLoginForm()
                 .clickOnPasswordReset()

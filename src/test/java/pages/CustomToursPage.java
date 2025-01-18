@@ -86,13 +86,14 @@ public class CustomToursPage {
     }
 
     public CustomToursPage setPassportNum() {
-        passportNum.setValue("AD"+faker.number().digits(7));
+        passportNum.setValue("AD" + faker.number().digits(7));
         return this;
     }
 
     public void setPassportExpiration() {
         dataField.last().setValue("11/11/2027");
     }
+
     public CustomToursPage closeCalender() {
         name.click();
         return this;
@@ -108,6 +109,7 @@ public class CustomToursPage {
                 "var toastProgressBar = document.querySelector('.Vue-Toastification__progress-bar');" +
                         "if (toastProgressBar) { toastProgressBar.remove(); }");
     }
+
     public CustomToursPage bookTour() {
         bookTour.click();
         return this;

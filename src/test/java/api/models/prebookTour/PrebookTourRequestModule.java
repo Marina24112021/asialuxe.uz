@@ -12,7 +12,7 @@ public class PrebookTourRequestModule {
     Integer type,
             adults,
             childs;
-    String  tour_price,
+    String tour_price,
             avia_price,
             total_price,
             date_from,

@@ -21,8 +21,17 @@ public class BrowserstackDriver implements WebDriverProvider {
 
     public static final BrowserstackConfig config = ConfigFactory.create(BrowserstackConfig.class, System.getProperties());
 
-    private static MutableCapabilities getMutableCapabilities() {
+    @Nonnull
+    @Override
+    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
         MutableCapabilities caps = new MutableCapabilities();
+
+        Properties credentials = null;
+        try {
+            credentials = readSecretFiles(SECRET_FILE_PATH_FOR_BROWSERSTACK);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         caps.setCapability("app", config.getApp());
         caps.setCapability("platformName", config.getPlatformName());
         caps.setCapability("deviceName", config.getDevice());
@@ -37,23 +46,12 @@ public class BrowserstackDriver implements WebDriverProvider {
 
         caps.setCapability("browserstack.debug", "true");
         caps.setCapability("browserstack.networkLogs", "true");
-        return caps;
-    }
+        caps.setCapability("browserstack.user", credentials.getProperty("login"));
+        caps.setCapability("browserstack.key", credentials.getProperty("password"));
 
-    @Nonnull
-    @Override
-    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
-        Properties credentials = null;
         try {
-            credentials = readSecretFiles(SECRET_FILE_PATH_FOR_BROWSERSTACK);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        MutableCapabilities caps = getMutableCapabilities();
-
-        String browserStackUrl = "https://" + credentials.getProperty("login") + ":" + credentials.getProperty("password") + "@hub-cloud.browserstack.com/wd/hub";
-        try {
-            return new RemoteWebDriver(new URL(browserStackUrl), caps);
+            return new RemoteWebDriver(
+                    new URL(config.getRemoteURL()), caps);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
