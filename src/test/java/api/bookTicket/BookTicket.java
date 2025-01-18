@@ -60,9 +60,9 @@ public class BookTicket {
                 0
         );
         return new BookTicketRequestModel(
-                "Trafimiv",
-                "ivan.trafimov@gmail.com",
-                "+998908885005",
+                "Yuldashev Anvar ",
+                "yu.anvar@gmail.cim",
+                "+998909997887",
                 reservation_id,
                 1,
                 "",
