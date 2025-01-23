@@ -1,29 +1,35 @@
 package tests.web;
 
+import com.github.javafaker.Faker;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.MainPage;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @Owner("Marina Chen")
 @Tag("smoke")
 public class AsialuxeMainTest extends TestBase {
     final MainPage mainPage = new MainPage();
-
+    final Faker faker = new Faker();
     @Test
     @DisplayName("Отображение сообщения при поиске билетов")
-    void checkMessageOfSearchingIsAppearedInSearchPanelOnMainPageTest() {
+    void checkListOfTicketIsNotEmptyTest() {
         mainPage.openMainPage()
                 .clickOnFieldWhere()
-                .fillInputWhereFrom()
+                .fillInputWhereFrom("Tashkent")
                 .selectFirstValueWhereFrom()
-                .fillInputWhereTo()
+                .fillInputWhereTo("Moskow")
                 .selectFirstValueWhereTo()
                 .removeAttr()
                 .fillInputDate()
                 .clickOnSearch()
-                .checkMessageOfSearching();
+                .checkMessageOfSearching()
+                .blockShouldBeVisible();
+        assertTrue(MainPage.collectionsAreNotEmpty() > 0);
+
     }
 
     @Test
@@ -38,8 +44,8 @@ public class AsialuxeMainTest extends TestBase {
     public void checkAlertIsAppearedIfCredentialsIsUncorrectedTest() {
         mainPage.openMainPage()
                 .clickOnOpenLoginForm()
-                .setLogin()
-                .setPassword()
+                .setLogin(faker.name().lastName())
+                .setPassword(faker.internet().password())
                 .clickOnLogin();
         mainPage.runScriptToFrozenAlertMessage();
         mainPage.checkAlertMessageIsAppeared();
@@ -51,9 +57,9 @@ public class AsialuxeMainTest extends TestBase {
         mainPage.openMainPage()
                 .clickOnOpenLoginForm()
                 .clickOnRegistration();
-        mainPage.setFullName()
-                .setEmail()
-                .setPasswordRegistration();
+        mainPage.setFullName(faker.name().fullName())
+                .setEmail(faker.internet().emailAddress())
+                .setPasswordRegistration(faker.internet().password());
         mainPage.clickOnRegistrationFromForm();
         mainPage.checkStyleOfInputPassword();
     }
@@ -64,7 +70,7 @@ public class AsialuxeMainTest extends TestBase {
         mainPage.openMainPage()
                 .clickOnOpenLoginForm()
                 .clickOnPasswordReset()
-                .setEmailReset()
+                .setEmailReset(faker.internet().emailAddress())
                 .clickReset()
                 .runScriptToFrozenAlertMessage();
         mainPage.checkMessageToResetPassword();

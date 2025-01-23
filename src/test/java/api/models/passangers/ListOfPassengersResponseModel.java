@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class ListOfPassengersResponseModel {
-    List<ListOfPassengerDataModel> data;
+    List<PassengerDataModel> data;
     @JsonProperty("code")
     private Integer code_val;
     private String message;

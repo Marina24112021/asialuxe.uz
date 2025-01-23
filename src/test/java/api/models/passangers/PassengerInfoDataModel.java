@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ListOfPassengersDataModel {
+public class PassengerInfoDataModel {
     Integer id,
             user_id;
     String shen_gen_status,

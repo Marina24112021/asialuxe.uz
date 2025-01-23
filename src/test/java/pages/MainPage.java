@@ -1,10 +1,6 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
-import com.github.javafaker.Faker;
+import com.codeborne.selenide.*;
 import io.qameta.allure.Step;
 
 import java.time.LocalDate;
@@ -21,7 +17,8 @@ public class MainPage {
     final SelenideElement input = $("input[placeholder='Дата вылета']");
     final SelenideElement fromInput = $("[placeholder='Откуда']");
     final SelenideElement toInput = $("[placeholder='Куда']");
-    final SelenideElement mainSearch = $("#main_search");
+    static final SelenideElement mainSearch = $("#main_search");
+    static final ElementsCollection colOfTickets = mainSearch.parent().parent().sibling(0).lastChild().lastChild().lastChild().$$("div");;
     final ElementsCollection listWhereFrom = fromInput.parent().sibling(0).$$("ul li");
     final ElementsCollection listWhereTo = toInput.parent().sibling(0).$$("li");
     final ElementsCollection textsOfMenu = $$("main.container div div a div p");
@@ -38,7 +35,7 @@ public class MainPage {
     final SelenideElement reset = $(byText("Сброс пароля"));
     final SelenideElement emailReset = $("[placeholder='Email']");
     final SelenideElement buttonRegistration = $(byText("Зарегистрироваться"));
-    final Faker faker = new Faker();
+
 
     @Step("Открыть главную страницу")
     public MainPage openMainPage() {
@@ -53,8 +50,8 @@ public class MainPage {
     }
 
     @Step("Заполнить поле Откуда")
-    public MainPage fillInputWhereFrom() {
-        fromInput.shouldBe(editable).setValue("Tashkent");
+    public MainPage fillInputWhereFrom(String WhereFrom) {
+        fromInput.shouldBe(editable).setValue(WhereFrom);
         return this;
     }
 
@@ -65,8 +62,8 @@ public class MainPage {
     }
 
     @Step("Заполнить поле Куда")
-    public MainPage fillInputWhereTo() {
-        toInput.shouldBe(visible).setValue("Namangan");
+    public MainPage fillInputWhereTo(String WhereTo) {
+        toInput.shouldBe(visible).setValue(WhereTo);
         return this;
     }
 
@@ -95,14 +92,13 @@ public class MainPage {
     }
 
     @Step("Проверить что отображается сообщение о поиске билетов ")
-    public void checkMessageOfSearching() {
+    public MainPage checkMessageOfSearching() {
         mainSearch.parent().sibling(0).shouldHave(text("Пожалуйста, подождите, мы находим для вас лучшие варианты..."));
+        return this;
     }
 
     public void checkTextInMenu(String... listMenuText) {
-        for (int i = 0; i < listMenuText.length; i++) {
-            textsOfMenu.get(i).shouldHave(text(listMenuText[i]));
-        }
+            textsOfMenu.shouldHave(CollectionCondition.textsInAnyOrder(listMenuText));
     }
 
     @Step("Нажать на Войти с главной страницы")
@@ -118,8 +114,8 @@ public class MainPage {
     }
 
     @Step("Заполнить email")
-    public MainPage setEmailReset() {
-        emailReset.setValue(faker.internet().emailAddress());
+    public MainPage setEmailReset(String email) {
+        emailReset.setValue(email);
         return this;
     }
 
@@ -130,14 +126,14 @@ public class MainPage {
     }
 
     @Step("Установить некорректный логин")
-    public MainPage setLogin() {
-        logEmail.setValue(faker.name().lastName());
+    public MainPage setLogin(String lastName) {
+        logEmail.setValue(lastName);
         return this;
     }
 
     @Step("Установить некорректный пароль")
-    public MainPage setPassword() {
-        logPass.setValue(faker.internet().password());
+    public MainPage setPassword(String password) {
+        logPass.setValue(password);
         return this;
     }
 
@@ -157,20 +153,20 @@ public class MainPage {
     }
 
     @Step("Заполнить ФИО")
-    public MainPage setFullName() {
-        fullName.setValue(faker.name().fullName());
+    public MainPage setFullName(String fullFakeName) {
+        fullName.setValue(fullFakeName);
         return this;
     }
 
     @Step("Заполнить email")
-    public MainPage setEmail() {
-        email.setValue(faker.internet().emailAddress());
+    public MainPage setEmail(String emailFaker) {
+        email.setValue(emailFaker);
         return this;
     }
 
     @Step("Заполнить password")
-    public void setPasswordRegistration() {
-        password.setValue(faker.internet().password());
+    public void setPasswordRegistration(String passwordFake) {
+        password.setValue(passwordFake);
     }
 
     @Step("Запустить скрипт по заморозке сообщения об ошибке")
@@ -193,5 +189,12 @@ public class MainPage {
     @Step("Сообщение что код отправлен на почту корректно отображается ")
     public void checkMessageToResetPassword() {
         logAlert.shouldHave(Condition.text("Код подтверждения был отправлен на вашу электронную почту!"));
+    }
+    public MainPage blockShouldBeVisible(){
+        mainSearch.parent().parent().sibling(0).shouldBe(Condition.visible);
+        return this;
+    }
+    public static int collectionsAreNotEmpty(){
+        return colOfTickets.size();
     }
 }

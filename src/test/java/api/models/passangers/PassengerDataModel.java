@@ -5,8 +5,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ListOfPassengerDataModel {
+public class PassengerDataModel {
     Integer code;
     String message;
-    ListOfPassengersDataModel data;
+    PassengerInfoDataModel data;
 }

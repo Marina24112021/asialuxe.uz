@@ -1,8 +1,8 @@
 package tests.api;
 
-import api.models.passangers.ListOfPassengerDataModel;
 import api.models.passangers.ListOfPassengersResponseModel;
 import api.models.passangers.NewPassengerResponseModel;
+import api.models.passangers.PassengerDataModel;
 import api.passangers.Passengers;
 import io.qameta.allure.Owner;
 import io.restassured.response.Response;
@@ -29,9 +29,9 @@ public class PassengerTest {
         NewPassengerResponseModel response = step("Создать пассажира", Passengers::createPassenger);
         Integer newId = response.getData().getId();
         ListOfPassengersResponseModel responseList = step("Получить полный список Ids пассажиров", Passengers::getListOfPassengers);
-        List<ListOfPassengerDataModel> passengers = responseList.getData();
+        List<PassengerDataModel> passengers = responseList.getData();
         List<Integer> ids = new ArrayList<>();
-        for (ListOfPassengerDataModel passenger : passengers) {
+        for (PassengerDataModel passenger : passengers) {
             ids.add(passenger.getData().getId());
         }
         step("Созданный пассажир успешно найден в списке ", () -> assertTrue(ids.contains(newId)));
@@ -44,9 +44,9 @@ public class PassengerTest {
         Integer newId = response.getData().getId();
         step("Удалить пассажира", () -> deletePassenger(newId, successfulResponse200Spec));
         ListOfPassengersResponseModel responseList = step("Получить полный список Ids пассажиров", Passengers::getListOfPassengers);
-        List<ListOfPassengerDataModel> passengers = responseList.getData();
+        List<PassengerDataModel> passengers = responseList.getData();
         List<Integer> ids = new ArrayList<>();
-        for (ListOfPassengerDataModel passenger : passengers) {
+        for (PassengerDataModel passenger : passengers) {
             ids.add(passenger.getData().getId());
         }
         step("Пассажир успешно удален. Пассажир не найден в списке", () -> assertFalse(ids.contains(newId)));
